@@ -1,12 +1,171 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}SnowTricks{% endblock %}</title>
+    {% block stylesheets %}
+        <!-- bootstrap.min css -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Main Stylesheet -->
+        <link rel="stylesheet" href="css/style.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="css/font-awesome.css">
+    {% endblock %}
+</head>
+{% block body %}
+<body>
+{% endblock %}
+<!-- Section Menu Start -->
+<!-- Header Start -->
+<nav class="navbar navbar-expand-lg navigation fixed-top" id="navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <h2 class="navbar-logo text-white text-capitalize">
+                <i class="fas fa-snowboarding"></i> Snow<span class="text-color">Tricks</span>
+            </h2>
+        </a>
+        <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-chevron-circle-up"></i></button>
+        <nav role="navigation" id="navToggle">
+            <div id="menuToggle" class="hidden-md-up">
+                <input type="checkbox"/>
+                <span></span>
+                <span></span>
+                <span></span>
+                <ul id="menu">
+                    <li><a href="/" class="text-white">Home</a></li>
+                    <li><a href="{{ path('publish') }}" class="text-white">Publish</a></li>
+                    <li><a href="{{ path('contact') }}" class="text-white">Contact</a></li>
+                    <li><a href="{{ path('connexionSignUp') }}" class="text-color">Sign up</a></li>
+                    <li><a href="{{ path('connexionSignIn') }}" class="text-color">Sign in</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="collapse text-center navbar-collapse" id="navbarsid">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('publish') }}">Publish</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">Contact</a></li>
+            </ul>
+            <div class="my-md-0 ml-lg-4 mt-4 mt-lg-0 ml-auto text-lg-right mb-3 mb-lg-0">
+                <ul class="navbar-nav mx-auto">
+                    <li><a href="{{ path('connexionSignUp') }}" class="text-color font-weight-bold mr-lg-2">Sign up </a>
+                    </li>
+                    <li><a href="{{ path('connexionSignIn') }}" class="text-color font-weight-bold navbar-sign">Sign
+                            in</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Header Close -->
+<div class="main-wrapper ">
+    <!-- Section Menu End -->
+    {% block content %}
+        <p>Pas de contenu</p>
+    {% endblock %}
+    <!-- Section Footer Start -->
+    <!-- footer Start -->
+    <footer class="footer bg-black-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                    <h2 class="text-white mb-4"><i class="fas fa-snowboarding"></i> SnowTricks</h2>
+
+                    <p>Snowboarding Community to share Tricks.</p>
+                    <p>Every SnowTricks can be modify or comment if you subscribe.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                    <div class="footer-widget recent-blog">
+                        <h4 class="mb-4 text-white letter-spacing text-uppercase">Recents Posts</h4>
+                        <div>
+                            <a href="#" class="text-white">Claritas est etiam processus dynamicus</a>
+                            <p class="text-sm mt-2 text-white-50">30 february 2019</p>
+                        </div>
+                        <div class="mt-4">
+                            <a href="#" class="text-white">Claritas est etiam processus dynamicus</a>
+                            <p class="text-sm mt-2 text-white-50">30 february 2019</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-5 mb-5 mb-lg-0">
+                    <div class="footer-widget">
+                        <h4 class="mb-4 text-white letter-spacing text-uppercase">Quick Links</h4>
+                        <ul class="list-unstyled footer-menu lh-40 mb-0">
+                            <li><a href="/"><i class="fas fa-angle-double-right"></i> SnowTricks</a></li>
+                            <li><a href="{{ path('connexionSignUp') }}"><i class="fas fa-angle-double-right"></i> Joins
+                                    us</a></li>
+                            <li><a href="{{ path('connexionSignIn') }}"><i class="fas fa-angle-double-right"></i> Sign
+                                    in</a></li>
+                            <li><a href="{{ path('contact') }}"><i class="fas fa-angle-double-right"></i> Contact us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-5">
+                    <div class="footer-widget">
+                        <h4 class="mb-4 text-white letter-spacing text-uppercase"><i class="fab fa-github"></i> About
+                            this</h4>
+                        <span class="text-white"><a href="https://github.com/Vincent-gv/snowtricks" target="_blank"
+                                                    class="text-white">Project #6 Openclassrooms</a></span>
+                        <p>Expand SnowTricks community site with Symfony.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center mt-5">
+                <div class="col-lg-4">
+                    <p class="mt-3 font-weight-bold">
+                        <i class="fas fa-snowboarding text-color"></i><span class="text-color"> SnowTricks ©
+                        <script>document.write(new Date().getFullYear());</script></span>
+                    </p>
+                </div>
+                <div class="col-lg-6 ml-auto text-right">
+                    <ul class="list-inline mb-0 footer-socials">
+                        <li class="list-inline-item">
+                            <a href="https://www.linkedin.com/in/vincent-gauchevertu/" target="_blank">
+                                <i class="fab fa-linkedin-in"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.facebook.com" target="_blank">
+                                <i class="fab fa-facebook-f"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.twitter.com" target="_blank">
+                                <i class="fab fa-twitter"></i></a></a>
+                        </li>
+                        <li class="list-inline-item"><a href="https://github.com/Vincent-gv/snowtricks" target="_blank"><i
+                                        class="fab fa-github"></i></a></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Section Footer End -->
+    <!-- Section Footer Scripts -->
+</div>
+<!-- Main jQuery -->
+<script src="js/jquery.js"></script>
+<!-- Bootstrap 4.3.1 -->
+<script src="js/bootstrap.min.js"></script>
+{% block javascripts %}
+{% endblock %}
+<!--  JS -->
+<script src="js/script.js"></script>
+<script>
+    // Scroll to Top
+    var mybutton = document.getElementById("myBtn");
+    window.onscroll = function () {
+        scrollFunction()
+    };
+    function scrollFunction() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+</body>
 </html>
