@@ -8,32 +8,32 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ConnexionController extends AbstractController
+class SecurityController extends AbstractController
 {
     /**
-     * @Route("/connexion", name="connexionSignIn")
+     * @Route("/connection", name="securitySignIn")
      * @return Response
      */
-    public function connexionSignIn(): Response
+    public function securitySignIn(): Response
     {
-        return $this->render('pages/connexion-sign-in.html.twig');
+        return $this->render('pages/security-sign-in.html.twig');
     }
 
     /**
-     * @Route("/suscribe", name="connexionSignUp")
+     * @Route("/suscribe", name="securitySignUp")
      * @return Response
      */
-    public function connexionSignUp(): Response
+    public function securitySignUp(): Response
     {
-        return $this->render('pages/connexion-sign-up.html.twig');
+        return $this->render('pages/security-sign-up.html.twig');
     }
 
     /**
-     * @Route("/reset-password", name="connexionResetPassword")
+     * @Route("/reset-password", name="securityResetPassword")
      * @return Response
      */
-    public function connexionResetPassword(): Response
+    public function securityResetPassword(): Response
     {
-        return $this->render('pages/connexion-reset-password.html.twig');
+        return $this->render('pages/security-reset-password.html.twig');
     }
 }
