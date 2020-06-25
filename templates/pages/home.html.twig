@@ -25,16 +25,29 @@
     <section class="section home">
         <div class="container">
             <div class="row">
+                {% for trick in tricks %}
                 <div class="col-lg-3 col-md-6">
                     <div class="card border-0 rounded-0 p-0 mb-5 mb-lg-4 shadow-sm">
                         <p class="btn-edit mb-2">
                             <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
                             <a href="#" title="edit"><i class="far fa-edit"></i></a>
                         </p>
-                         <a href="{{ path('post') }}"><img src="images/gallery/snowboard-01.jpg" alt="" class="img-fluid">
+                         <a href="{{ path('trick') }}"><img src="images/gallery/snowboard-01.jpg" alt="" class="img-fluid">
                         <div class="card-body">
-                                    <a href="{{ path('post') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
-                                            Snowtricks</h5></a>
+                                    <a href="{{ path('trick') }}"><h5 class="card-title text-black mb-0">{{ trick.title }}</h5></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="card border-0 rounded-0 p-0 mb-5 mb-lg-4 shadow-sm">
+                        <p class="btn-edit mb-2">
+                            <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
+                            <a href="#" title="edit"><i class="far fa-edit"></i></a>
+                        </p>
+                         <a href="{{ path('trick') }}"><img src="images/gallery/snowboard-02.jpg" alt="" class="img-fluid"></a>
+                        <div class="card-body">
+                            <a href="{{ path('trick') }}"><h5 class="card-title text-black mb-0">Build Body figure on sunBuild Body figure on sun</h5></a>
                         </div>
                     </div>
                 </div>
@@ -44,21 +57,9 @@
                             <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
                             <a href="#" title="edit"><i class="far fa-edit"></i></a>
                         </p>
-                         <a href="{{ path('post') }}"><img src="images/gallery/snowboard-02.jpg" alt="" class="img-fluid"></a>
+                         <a href="{{ path('trick') }}"><img src="images/gallery/snowboard-03.jpg" alt="" class="img-fluid"></a>
                         <div class="card-body">
-                            <a href="{{ path('post') }}"><h5 class="card-title text-black mb-0">Build Body figure on sunBuild Body figure on sun</h5></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="card border-0 rounded-0 p-0 mb-5 mb-lg-4 shadow-sm">
-                        <p class="btn-edit mb-2">
-                            <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
-                            <a href="#" title="edit"><i class="far fa-edit"></i></a>
-                        </p>
-                         <a href="{{ path('post') }}"><img src="images/gallery/snowboard-03.jpg" alt="" class="img-fluid"></a>
-                        <div class="card-body">
-                            <a href="{{ path('post') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
+                            <a href="{{ path('trick') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
                                     Snowtricks</h5></a>
                         </div>
                     </div>
@@ -69,9 +70,9 @@
                             <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
                             <a href="#" title="edit"><i class="far fa-edit"></i></a>
                         </p>
-                         <a href="{{ path('post') }}"><img src="images/gallery/snowboard-04.jpg" alt="" class="img-fluid"></a>
+                         <a href="{{ path('trick') }}"><img src="images/gallery/snowboard-04.jpg" alt="" class="img-fluid"></a>
                         <div class="card-body">
-                            <a href="{{ path('post') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
+                            <a href="{{ path('trick') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
                                     Snowtricks</h5></a>
                         </div>
                     </div>
@@ -82,9 +83,9 @@
                             <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
                             <a href="#" title="edit"><i class="far fa-edit"></i></a>
                         </p>
-                         <a href="{{ path('post') }}"><img src="images/gallery/snowboard-05.jpg" alt="" class="img-fluid"></a>
+                         <a href="{{ path('trick') }}"><img src="images/gallery/snowboard-05.jpg" alt="" class="img-fluid"></a>
                         <div class="card-body">
-                            <a href="{{ path('post') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
+                            <a href="{{ path('trick') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
                                     Snowtricks</h5></a>
                         </div>
                     </div>
@@ -95,9 +96,9 @@
                             <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
                             <a href="#" title="edit"><i class="far fa-edit"></i></a>
                         </p>
-                         <a href="{{ path('post') }}"><img src="images/gallery/snowboard-06.jpg" alt="" class="img-fluid"></a>
+                         <a href="{{ path('trick') }}"><img src="images/gallery/snowboard-06.jpg" alt="" class="img-fluid"></a>
                         <div class="card-body">
-                            <a href="{{ path('post') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
+                            <a href="{{ path('trick') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
                                     Snowtricks</h5></a>
                         </div>
                     </div>
@@ -108,9 +109,9 @@
                             <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
                             <a href="#" title="edit"><i class="far fa-edit"></i></a>
                         </p>
-                         <a href="{{ path('post') }}"><img src="images/gallery/snowboard-07.jpg" alt="" class="img-fluid"></a>
+                         <a href="{{ path('trick') }}"><img src="images/gallery/snowboard-07.jpg" alt="" class="img-fluid"></a>
                         <div class="card-body">
-                            <a href="{{ path('post') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
+                            <a href="{{ path('trick') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
                                     Snowtricks</h5></a>
                         </div>
                     </div>
@@ -121,9 +122,9 @@
                             <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
                             <a href="#" title="edit"><i class="far fa-edit"></i></a>
                         </p>
-                         <a href="{{ path('post') }}"><img src="images/gallery/snowboard-08.jpg" alt="" class="img-fluid"></a>
+                         <a href="{{ path('trick') }}"><img src="images/gallery/snowboard-08.jpg" alt="" class="img-fluid"></a>
                         <div class="card-body">
-                            <a href="{{ path('post') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
+                            <a href="{{ path('trick') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
                                     Snowtricks</h5></a>
                         </div>
                     </div>
@@ -134,9 +135,9 @@
                             <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
                             <a href="#" title="edit"><i class="far fa-edit"></i></a>
                         </p>
-                         <a href="{{ path('post') }}"><img src="images/gallery/snowboard-01.jpg" alt="" class="img-fluid"></a>
+                         <a href="{{ path('trick') }}"><img src="images/gallery/snowboard-01.jpg" alt="" class="img-fluid"></a>
                         <div class="card-body">
-                            <a href="{{ path('post') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
+                            <a href="{{ path('trick') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
                                     Snowtricks</h5></a>
                         </div>
                     </div>
@@ -147,9 +148,9 @@
                             <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
                             <a href="#" title="edit"><i class="far fa-edit"></i></a>
                         </p>
-                         <a href="{{ path('post') }}"><img src="images/gallery/snowboard-02.jpg" alt="" class="img-fluid"></a>
+                         <a href="{{ path('trick') }}"><img src="images/gallery/snowboard-02.jpg" alt="" class="img-fluid"></a>
                         <div class="card-body">
-                            <a href="{{ path('post') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
+                            <a href="{{ path('trick') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
                                     Snowtricks</h5></a>
                         </div>
                     </div>
@@ -160,9 +161,9 @@
                             <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
                             <a href="#" title="edit"><i class="far fa-edit"></i></a>
                         </p>
-                         <a href="{{ path('post') }}"><img src="images/gallery/snowboard-03.jpg" alt="" class="img-fluid"></a>
+                         <a href="{{ path('trick') }}"><img src="images/gallery/snowboard-03.jpg" alt="" class="img-fluid"></a>
                         <div class="card-body">
-                            <a href="{{ path('post') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
+                            <a href="{{ path('trick') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
                                     Snowtricks</h5></a>
                         </div>
                     </div>
@@ -173,9 +174,9 @@
                             <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
                             <a href="#" title="edit"><i class="far fa-edit"></i></a>
                         </p>
-                         <a href="{{ path('post') }}"><img src="images/gallery/snowboard-04.jpg" alt="" class="img-fluid"></a>
+                         <a href="{{ path('trick') }}"><img src="images/gallery/snowboard-04.jpg" alt="" class="img-fluid"></a>
                         <div class="card-body">
-                            <a href="{{ path('post') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
+                            <a href="{{ path('trick') }}"><h5 class="card-title text-black mb-0">Build Body figure Sniper
                                     Snowtricks</h5></a>
                         </div>
                     </div>

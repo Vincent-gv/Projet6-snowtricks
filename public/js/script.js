@@ -14,6 +14,4 @@
     // Zoombox Overlay
     $('a.zoombox').zoombox();
 
-
-
 })(jQuery);
