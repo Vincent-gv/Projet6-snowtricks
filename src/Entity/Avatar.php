@@ -22,11 +22,6 @@ class Avatar
      */
     private $filename;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $user_id;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -40,18 +35,6 @@ class Avatar
     public function setFilename(string $filename): self
     {
         $this->filename = $filename;
-
-        return $this;
-    }
-
-    public function getUserId(): ?int
-    {
-        return $this->user_id;
-    }
-
-    public function setUserId(int $user_id): self
-    {
-        $this->user_id = $user_id;
 
         return $this;
     }

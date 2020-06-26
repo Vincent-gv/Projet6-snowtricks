@@ -28,11 +28,8 @@ class TrickController extends AbstractController
     public function post(): Response
     {
         $trick = $this->repository->find(1);
-        $commentsRepository = $this->forward(CommentController::class)->;
-        $comments = $commentsRepository->
         return $this->render('pages/trick.html.twig', [
-            'trick' => $trick,
-            'comments' => $comments
+            'trick' => $trick
     ]);
     }
 

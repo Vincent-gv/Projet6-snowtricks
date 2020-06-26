@@ -28,9 +28,10 @@ class ImageTrick
     private $alt;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="image")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $trick_id;
+    private $trick;
 
     public function getId(): ?int
     {
@@ -61,14 +62,14 @@ class ImageTrick
         return $this;
     }
 
-    public function getPostId(): ?int
+    public function getTrick(): ?Trick
     {
-        return $this->trick_id;
+        return $this->trick;
     }
 
-    public function setPostId(int $trick_id): self
+    public function setTrick(?Trick $trick): self
     {
-        $this->trick_id = $trick_id;
+        $this->trick = $trick;
 
         return $this;
     }
