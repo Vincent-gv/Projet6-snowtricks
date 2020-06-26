@@ -1,0 +1,50 @@
+
+<div class="py-4 text-center comments">
+    <div class="divider mb-3"></div>
+    <h4 class="mb-2 font-secondary text-uppercase font-weight-normal">Leave a comment</h4>
+    <form action="#" class="text-left">
+        <div class="form-group text-center">
+                                    <textarea name="msg" id="msg" cols="30" rows="6" class="form-control"
+                                              placeholder="Your Comment"></textarea>
+            <a href="#" class="btn btn-main mt-4">Add Comment</a>
+        </div>
+    </form>
+</div>
+<div class="mt-2 border-top mb-5 pb-4">
+    <h4 class="font-secondary text-uppercase font-weight-normal pt-4 pb-3">Comments</h4>
+    <div class="media">
+        <img src="{{ asset('images/avatars/user1.jpg') }}" class="mr-4 img-fluid" alt="...">
+        <div class="media-body">
+            <h4 class="mt-0 mb-0">Zander Rohan</h4>
+            <span>15 january 2019 At 10:30 pm</span>
+            <p class="mt-2">{{ comments.comment }}</p>
+            <span><a href="#anchor" class="btn reply-btn">Reply</a></span>
+            <div class="media mt-5">
+                <a class="mr-3" href="#">
+                    <img src="{{ asset('images/avatars/user2.jpg') }}" class="mr-4 img-fluid"
+                         alt="...">
+                </a>
+                <div class="media-body">
+                    <h4 class="mt-0 mb-0">Moris hnery</h4>
+                    <span>15 january 2019 At 10:30 pm</span>
+                    <p class="mt-2">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+                        scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate
+                        at, tempus viverra turpis.</p>
+
+                    <span><a href="#anchor" class="btn reply-btn">Reply</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="media mt-5">
+        <img src="{{ asset('images/avatars/user1.jpg') }}" class="mr-4 img-fluid" alt="...">
+        <div class="media-body">
+            <h4 class="mt-0 mb-0">Gyle hank</h4>
+            <span>15 january 2019 At 10:30 pm</span>
+            <p class="mt-2">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+                scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at,
+                tempus viverra turpis.</p>
+            <span><a href="#anchor" class="btn reply-btn">Reply</a></span>
+        </div>
+    </div>
+</div>

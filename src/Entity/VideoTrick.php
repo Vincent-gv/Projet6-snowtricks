@@ -25,12 +25,12 @@ class VideoTrick
     /**
      * @ORM\Column(type="integer")
      */
-    private $video_id;
+    private $videoAlias;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="Video")
      */
-    private $trick_id;
+    private $trick;
 
     public function getId(): ?int
     {
@@ -49,26 +49,26 @@ class VideoTrick
         return $this;
     }
 
-    public function getVideoId(): ?int
+    public function getVideoAlias(): ?int
     {
-        return $this->video_id;
+        return $this->videoAlias;
     }
 
-    public function setVideoId(int $video_id): self
+    public function setVideoAlias(int $videoAlias): self
     {
-        $this->video_id = $video_id;
+        $this->videoAlias = $videoAlias;
 
         return $this;
     }
 
-    public function getPostId(): ?int
+    public function getTrick(): ?Trick
     {
-        return $this->trick_id;
+        return $this->trick;
     }
 
-    public function setPostId(int $trick_id): self
+    public function setTrick(?Trick $trick): self
     {
-        $this->trick_id = $trick_id;
+        $this->trick = $trick;
 
         return $this;
     }

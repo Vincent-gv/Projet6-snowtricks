@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\ImageTrick;
+use App\Entity\Trick;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,21 @@ class ImageTrickRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ImageTrick::class);
+    }
+
+    /**
+     * @return ImageTrick[]
+     */
+    public function findImageTrick($id)
+    {
+        return $this->findVisibleQuery()
+            ->orderBy('i.id', 'DESC')
+            ->where('i.trick_id = :val')
+            ->setParameter('val', $id)
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     // /**
