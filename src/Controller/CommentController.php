@@ -23,14 +23,12 @@ class CommentController extends AbstractController
     }
 
 
-
-
     public function findComments()
     {
         return $this->commentRepository->findAll();
-//
-//        return $this->render('pages/_comments.html.twig', [
-//            'comments' => $comments
-//        ]);
+
+        return $this->render('pages/_comments.html.twig', [
+            'comments' => $comments
+        ]);
     }
 }

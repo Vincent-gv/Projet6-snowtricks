@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,9 +35,25 @@ class User
     private $password;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="user")
      */
-    private $avatar_id;
+    private $Trick;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="User")
+     */
+    private $comments;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Avatar::class, cascade={"persist", "remove"})
+     */
+    private $Avatar;
+
+    public function __construct()
+    {
+        $this->Trick = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -78,14 +96,76 @@ class User
         return $this;
     }
 
-    public function getAvatarId(): ?int
+    /**
+     * @return Collection|Trick[]
+     */
+    public function getTrick(): Collection
     {
-        return $this->avatar_id;
+        return $this->Trick;
     }
 
-    public function setAvatarId(int $avatar_id): self
+    public function addTrick(Trick $trick): self
     {
-        $this->avatar_id = $avatar_id;
+        if (!$this->Trick->contains($trick)) {
+            $this->Trick[] = $trick;
+            $trick->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrick(Trick $trick): self
+    {
+        if ($this->Trick->contains($trick)) {
+            $this->Trick->removeElement($trick);
+            // set the owning side to null (unless already changed)
+            if ($trick->getUser() === $this) {
+                $trick->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAvatar(): ?Avatar
+    {
+        return $this->Avatar;
+    }
+
+    public function setAvatar(?Avatar $Avatar): self
+    {
+        $this->Avatar = $Avatar;
 
         return $this;
     }
