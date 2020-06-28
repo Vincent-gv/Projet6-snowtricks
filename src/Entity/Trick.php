@@ -148,7 +148,7 @@ class Trick
      */
     public function getImage(): Collection
     {
-        return $this->image;
+            return $this->image;
     }
 
     public function addImage(ImageTrick $image): self

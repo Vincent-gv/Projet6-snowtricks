@@ -23,7 +23,7 @@ class VideoTrick
     private $plateform;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $videoAlias;
 
@@ -49,12 +49,12 @@ class VideoTrick
         return $this;
     }
 
-    public function getVideoAlias(): ?int
+    public function getVideoAlias(): ?string
     {
         return $this->videoAlias;
     }
 
-    public function setVideoAlias(int $videoAlias): self
+    public function setVideoAlias(string $videoAlias): self
     {
         $this->videoAlias = $videoAlias;
 

@@ -20,7 +20,8 @@
                     <span class="h3 d-inline-block mb-4 subhead text-uppercase">Snowboard tricks</span>
                     <h1 class="text-uppercase text-white mb-5">{{ trick.title }}
                     </h1>
-                    <h4 class="text-white"><i class="far fa-edit"></i> Publish on {{ trick.createdAt | date('(l), F j Y') }}</h4>
+                    <h4 class="text-white"><i class="far fa-edit"></i> Publish
+                        on {{ trick.createdAt | date('(l), F j Y') }}</h4>
                 </div>
             </div>
         </div>
@@ -31,78 +32,51 @@
         <div id="thumbnail-slider" class="mt-5">
             <div class="inner">
                 <ul>
-                    <li>
-                        <a href="images/gallery/snowboard-01.jpg" onclick="$.zoombox.options.theme = 'simple';"
-                           class="zoombox thumb"></a>
-                        <p class="btn-edit edit-flex mb-2">
-                            <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
-                            <a href="#" title="edit"><i class="far fa-edit"></i></a>
-                        </p>
-                    </li>
-                    <li>
-                        <a href="https://www.youtube.com/watch?v=qsd8uaex-Is" class="zoombox carousel-items"></a>
-                        <iframe width="320" height="220" src="https://www.youtube.com/embed/qsd8uaex-Is"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-
-                        <p class="btn-edit edit-flex mb-2">
-                            <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
-                            <a href="#" title="edit"><i class="far fa-edit"></i></a>
-                        </p>
-                    </li>
-                    <li>
-                        <a href="images/gallery/snowboard-03.jpg" onclick="$.zoombox.options.theme = 'simple';"
-                           class="zoombox thumb"></a>
-                        <p class="btn-edit edit-flex mb-2">
-                            <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
-                            <a href="#" title="edit"><i class="far fa-edit"></i></a>
-                        </p>
-                    </li>
-                    <li>
-                        <a href="http://www.dailymotion.com/video/x63itee" class="zoombox carousel-items"></a>
-                        <iframe frameborder="0" width="640" height="360" src="https://www.dailymotion.com/embed/video/x63itee" allowfullscreen="" allow="autoplay"></iframe>
-                        <p class="btn-edit edit-flex mb-2">
-                            <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
-                            <a href="#" title="edit"><i class="far fa-edit"></i></a>
-                        </p>
-                    </li>
-                    <li>
-                        <a href="images/gallery/snowboard-05.jpg" onclick="$.zoombox.options.theme = 'simple';"
-                           class="zoombox thumb"></a>
-                        <p class="btn-edit edit-flex mb-2">
-                            <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
-                            <a href="#" title="edit"><i class="far fa-edit"></i></a>
-                        </p>
-                    </li>
-                    <li>
-                        <a href="https://www.youtube.com/watch?v=aRyFCCq63ms" class="zoombox carousel-items"></a>
-                        <iframe width="186.21" height="120" src="https://www.youtube.com/embed/aRyFCCq63ms"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-
-                        <p class="btn-edit edit-flex mb-2">
-                            <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
-                            <a href="#" title="edit"><i class="far fa-edit"></i></a>
-                        </p>
-                    </li>
-                    <li>
-                        <a href="images/gallery/snowboard-07.jpg" onclick="$.zoombox.options.theme = 'simple';"
-                           class="zoombox thumb"></a>
-                        <p class="btn-edit edit-flex mb-2">
-                            <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
-                            <a href="#" title="edit"><i class="far fa-edit"></i></a>
-                        </p>
-                    </li>
-                    <li>
-                        <a href="images/gallery/snowboard-08.jpg" onclick="$.zoombox.options.theme = 'simple';"
-                           class="zoombox thumb"></a>
-                        <p class="btn-edit edit-flex mb-2">
-                            <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
-                            <a href="#" title="edit"><i class="far fa-edit"></i></a>
-                        </p>
-                    </li>
+                    {% if trick.video %}
+                        {% for video in trick.video %}
+                            {% if video.plateform == 'YouTube' %}
+                                <li>
+                                    <a href="https://www.youtube.com/watch?v={{ video.videoAlias }}"
+                                       class="zoombox carousel-items"></a>
+                                    <iframe width="320" height="220"
+                                            src="https://www.youtube.com/embed/{{ video.videoAlias }}"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                    <p class="btn-edit edit-flex mb-2">
+                                        <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
+                                        <a href="#" title="edit"><i class="far fa-edit"></i></a>
+                                    </p>
+                                </li>
+                            {% elseif video.plateform == 'DailyMotion' %}
+                                <li>
+                                    <a href="http://www.dailymotion.com/video/{{ video.videoAlias }}"
+                                       class="zoombox carousel-items"></a>
+                                    <iframe frameborder="0" width="640" height="360"
+                                            src="https://www.dailymotion.com/embed/video/{{ video.videoAlias }}"
+                                            allowfullscreen=""
+                                            allow="autoplay"></iframe>
+                                    <p class="btn-edit edit-flex mb-2">
+                                        <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
+                                        <a href="#" title="edit"><i class="far fa-edit"></i></a>
+                                    </p>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if trick.image %}
+                        {% for image in trick.image %}
+                            <li>
+                                <a href="images/gallery/{{ image.filename }}"
+                                   onclick="$.zoombox.options.theme = 'simple';"
+                                   class="zoombox thumb"></a>
+                                <p class="btn-edit edit-flex mb-2">
+                                    <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
+                                    <a href="#" title="edit"><i class="far fa-edit"></i></a>
+                                </p>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -118,13 +92,66 @@
                         </div>
                         <div id="anchor" class="border-top border-bottom py-4 text-center link-black m-5">
                             <ul class="list-inline mb-0">
-                                <li class="list-inline-item"><a href="#"><i class="far fa-calendar-plus"></i> Posted on {{ trick.createdAt | date('m/d/y, g:i a') }}</a></li>
-                                <li class="list-inline-item"><a href="#"><i class="far fa-calendar-alt"></i> Modified on {{ trick.updatedAt | date('m/d/y, g:i a') }}</a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fas fa-user"></i> {{ trick.userId }}</a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fas fa-tag"></i> {{ trick.categoryId }}</a></li>
+                                <li class="list-inline-item"><a href="#"><i class="far fa-calendar-plus"></i> Posted
+                                        on {{ trick.createdAt | date('m/d/y, g:i a') }}</a></li>
+                                <li class="list-inline-item"><a href="#"><i class="far fa-calendar-alt"></i> Modified
+                                        on {{ trick.updatedAt | date('m/d/y, g:i a') }}</a></li>
+                                <li class="list-inline-item"><a href="#"><i class="fas fa-user"></i> trick.user }}</a>
+                                </li>
+                                <li class="list-inline-item"><a href="#"><i class="fas fa-tag"></i> trick.category
+                                        }}</a></li>
                             </ul>
                         </div>
-{#                        {% include 'pages/_comments.html.twig' with { 'comments':comments } only %}#}
+
+                        <div class="py-4 text-center comments">
+                            <div class="divider mb-3"></div>
+                            <h4 class="mb-2 font-secondary text-uppercase font-weight-normal">Leave a comment</h4>
+                            <form action="#" class="text-left">
+                                <div class="form-group text-center">
+                                    <textarea name="msg" id="msg" cols="30" rows="6" class="form-control"
+                                              placeholder="Your Comment"></textarea>
+                                    <a href="#" class="btn btn-main mt-4">Add Comment</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="mt-2 border-top mb-5 pb-4">
+                            <h4 class="font-secondary text-uppercase font-weight-normal pt-4 pb-3">Comments</h4>
+                            <div class="media">
+                                <img src="{{ asset('images/avatars/user1.jpg') }}" class="mr-4 img-fluid" alt="...">
+                                <div class="media-body">
+                                    <h4 class="mt-0 mb-0">Zander Rohan</h4>
+                                    <span>15 january 2019 At 10:30 pm</span>
+                                    <p class="mt-2">jkhgkbjkhgk jhgjf</p>
+                                    <span><a href="#anchor" class="btn reply-btn">Reply</a></span>
+                                    <div class="media mt-5">
+                                        <a class="mr-3" href="#">
+                                            <img src="{{ asset('images/avatars/user2.jpg') }}" class="mr-4 img-fluid"
+                                                 alt="...">
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="mt-0 mb-0">Moris hnery</h4>
+                                            <span>15 january 2019 At 10:30 pm</span>
+                                            <p class="mt-2">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+                                                scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate
+                                                at, tempus viverra turpis.</p>
+
+                                            <span><a href="#anchor" class="btn reply-btn">Reply</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media mt-5">
+                                <img src="{{ asset('images/avatars/user1.jpg') }}" class="mr-4 img-fluid" alt="...">
+                                <div class="media-body">
+                                    <h4 class="mt-0 mb-0">Gyle hank</h4>
+                                    <span>15 january 2019 At 10:30 pm</span>
+                                    <p class="mt-2">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+                                        scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at,
+                                        tempus viverra turpis.</p>
+                                    <span><a href="#anchor" class="btn reply-btn">Reply</a></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

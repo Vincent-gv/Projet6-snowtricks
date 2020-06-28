@@ -56,32 +56,55 @@
                                               placeholder="Description"></textarea>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <h4 class="font-weight-light"><i class="fab fa-youtube"></i> Share videos</h4>
-                                    <div class="form-group">
-                                        <input name="video-url" type="text" class="form-control" placeholder="Enter the video URL from the videos website (YouTube, Dailymotion...)">
-                                    </div>
-                                    <textarea name="video" class="form-control" rows="3"
-                                              placeholder="Paste the entire EMBED code"></textarea>
-                                    <button class="btn-round mt-2 text-sm" type="submit"><i class="fas fa-plus"></i> Add
-                                        more embed videos
-                                    </button>
-                                </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+                                <h4 class="font-weight-light"><i class="fab fa-youtube"></i> Add a Video Trick</h4>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
-                                <h4 class="font-weight-light"><i class="fas fa-images"></i> Upload pictures</h4>
+                        </div>
+                        <div id="add-video" class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-6">
+                                <select id="group" class="custom-select" name="group">
+                                    <option value="">Select Video Plateform</option>
+                                    <option value="YouTube">YouTube</option>
+                                    <option value="DailyMotion">DailyMotion</option>
+                                </select>
                             </div>
+                            <div class="col-lg-7 col-md-7 col-sm-6">
+                                <input name="video-url" type="text" class="form-control"
+                                       placeholder="Enter the video ID">
+                            </div>
+                        </div>
+                        <div id="add-video-child"></div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 mt-1">
+                                <button class="btn-round text-sm" onclick="moreVideo()" type="button"><i
+                                            class="fas fa-plus"></i> Add
+                                    more embed videos
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
+                                <h4 class="font-weight-light"><i class="fas fa-images"></i> Add a Picture Trick</h4>
+                            </div>
+                        </div>
+
+                        <div id="add-picture" class="form-row">
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="form-group-2">
                                     <input type="file" class="custom-file-input" id="validatedCustomFile" required>
                                     <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                                    <button class="btn-round mt-2 text-sm" type="submit"><i class="fas fa-plus"></i> Add
-                                        more pictures
-                                    </button>
                                 </div>
-                                <div class="text-center">
-                                    <button class="btn btn-main mt-3" type="submit">Publish</button>
+                            </div>
+                        </div>
+                        <div id="add-picture-child"></div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <button class="btn-round mt-2 text-sm" onclick="morePicture()" type="button"><i
+                                            class="fas fa-plus"></i> Add
+                                    more pictures
+                                </button>
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-main" type="submit">Publish</button>
                                 </div>
                             </div>
                         </div>
@@ -91,4 +114,7 @@
         </div>
     </section>
     <!-- Publish section End -->
+{% endblock %}
+{% block javascripts %}
+    <script src="js/clone.js"></script>
 {% endblock %}
