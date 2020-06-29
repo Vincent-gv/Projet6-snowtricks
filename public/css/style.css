@@ -7,6 +7,8 @@ body {
     -webkit-font-smoothing: antialiased;
     font-size: 16px;
     color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
@@ -285,10 +287,6 @@ a:hover, a:focus {
     outline: 0;
 }
 
-.font-size-13 {
-    font-size: 13px;
-}
-
 .letter-spacing {
     letter-spacing: 1px;
 }
@@ -315,7 +313,7 @@ a:hover, a:focus {
 }
 
 .navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus {
-    color: #6adcff;
+    font-weight: 700;
 }
 
 .top-header {
@@ -362,10 +360,12 @@ a:hover, a:focus {
     display: none;
     position: absolute;
 }
+
 #menuToggle {
     position: absolute;
     z-index: 1;
-    user-select: none;top: -13px;
+    user-select: none;
+    top: -13px;
     left: 5px;
 }
 
@@ -505,7 +505,7 @@ a:hover, a:focus {
 }
 
 .card:hover .card-body {
-    border-top: 5px solid #ffffff;
+    border-top: 5px solid #202331;
 }
 
 .card-body .card-title {
@@ -516,6 +516,13 @@ a:hover, a:focus {
     font-family: Arial, Helvetica, sans-serif;
     line-height: 21px;
     text-align: center;
+}
+
+.card-label {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
 }
 
 .btn-edit {
@@ -555,6 +562,32 @@ a:hover, a:focus {
 
 .btn-edit i.far.fa-trash-alt {
     background: #202331;
+}
+
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 1;
+    font-size: 43px;
+    color: #d0d0d0;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+#myBtn:hover {
+    color: #2ccdff;
+}
+
+#thumbnail-slider .btn-edit i.far {
+    padding: 6px 0 6px 6px;
+}
+
+#thumbnail-slider .btn-edit i.far.fa-trash-alt {
+    background: #fff;
+    color: #202331;
 }
 
 .hover-style-1 {
@@ -665,6 +698,10 @@ a:hover, a:focus {
 
 .font-size-12 {
     font-size: 12px;
+}
+
+.font-size-13 {
+    font-size: 13px;
 }
 
 .link-black a {
@@ -808,21 +845,18 @@ a:hover, a:focus {
     transform: rotate(135deg);
 }
 
-#myBtn {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 30px;
-    z-index: 1;
-    font-size: 43px;
-    color: #d0d0d0;
-    cursor: pointer;
-    background: transparent;
-    border: none;
+
+.list-inline-item:not(:last-child) {
+    margin-right: 1.5rem;
 }
 
-#myBtn:hover {
-    color: #2ccdff;
+#trick {
+    font-size: 0px;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
 }
 
 .footer {
@@ -866,17 +900,19 @@ a:hover, a:focus {
 }
 
 .footer-socials li a {
-    color: #2ccdff;
-    font-size: 18px;
+    font-size: 22px;
     padding-left: 10px;
 }
+
 .posts {
     margin: 40px 0;
 }
+
 .post-thumbnail {
     max-width: 100%;
     margin-bottom: 1rem;
 }
+
 .post-item {
     background-color: #fff;
     border-radius: 10px;
@@ -958,6 +994,7 @@ a:hover, a:focus {
     #navToggle {
         display: block;
     }
+
     #myBtn {
         bottom: 0px;
         right: 0px;

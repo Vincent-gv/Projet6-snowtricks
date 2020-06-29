@@ -22,7 +22,7 @@ class User
     /**
      * @ORM\Column(type="string", length=55)
      */
-    private $username;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=55)
@@ -45,9 +45,9 @@ class User
     private $comments;
 
     /**
-     * @ORM\OneToOne(targetEntity=Avatar::class, cascade={"persist", "remove"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $Avatar;
+    private $image;
 
     public function __construct()
     {
@@ -60,14 +60,14 @@ class User
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    public function getName(): ?string
     {
-        return $this->username;
+        return $this->name;
     }
 
-    public function setUsername(string $username): self
+    public function setName(string $name): self
     {
-        $this->username = $username;
+        $this->name = $name;
 
         return $this;
     }
@@ -158,14 +158,14 @@ class User
         return $this;
     }
 
-    public function getAvatar(): ?Avatar
+    public function getImage(): ?string
     {
-        return $this->Avatar;
+        return $this->image;
     }
 
-    public function setAvatar(?Avatar $Avatar): self
+    public function setImage(?string $image): self
     {
-        $this->Avatar = $Avatar;
+        $this->image = $image;
 
         return $this;
     }

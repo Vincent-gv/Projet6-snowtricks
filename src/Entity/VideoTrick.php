@@ -23,9 +23,9 @@ class VideoTrick
     private $plateform;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
-    private $videoAlias;
+    private $videoId;
 
     /**
      * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="Video")
@@ -49,14 +49,14 @@ class VideoTrick
         return $this;
     }
 
-    public function getVideoAlias(): ?int
+    public function getVideoId(): ?string
     {
-        return $this->videoAlias;
+        return $this->videoId;
     }
 
-    public function setVideoAlias(int $videoAlias): self
+    public function setVideoId(string $videoId): self
     {
-        $this->videoAlias = $videoAlias;
+        $this->videoId = $videoId;
 
         return $this;
     }
