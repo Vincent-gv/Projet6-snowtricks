@@ -8,16 +8,25 @@
 {% endblock %}
 
 {% block body %}
-<body style="font-size: 0;">
+<body id="trick">
 {% endblock %}
 
 {% block content %}
-    <!-- Page Top section Start -->
+<!-- Page Top section Start -->
+{% if trick.image is defined %}
+{% for image in trick.image %}
+{% if loop.first %}
+<section class="heading"
+         style="background: url({{ asset('images/gallery/' ~ image.filename) }}) no-repeat 0 30%;background-size: cover;">
+    {% endif %}
+    {% endfor %}
+    {% else %}
     <section class="heading">
+        {% endif %}
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <span class="h3 d-inline-block mb-4 subhead text-uppercase">Snowboard tricks</span>
+                    <span class="h3 d-inline-block mb-4 subhead text-uppercase">{{ trick.category.name }}</span>
                     <h1 class="text-uppercase text-white mb-5">{{ trick.title }}
                     </h1>
                     <h4 class="text-white"><i class="far fa-edit"></i> Publish
@@ -36,29 +45,26 @@
                         {% for video in trick.video %}
                             {% if video.plateform == 'YouTube' %}
                                 <li>
-                                    <a href="https://www.youtube.com/watch?v={{ video.videoAlias }}"
+                                    <a href="https://www.youtube.com/watch?v={{ video.videoId }}"
                                        class="zoombox carousel-items"></a>
                                     <iframe width="320" height="220"
-                                            src="https://www.youtube.com/embed/{{ video.videoAlias }}"
+                                            src="https://www.youtube.com/embed/{{ video.videoId }}"
                                             frameborder="0"
-                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
                                             allowfullscreen></iframe>
                                     <p class="btn-edit edit-flex mb-2">
-                                        <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
-                                        <a href="#" title="edit"><i class="far fa-edit"></i></a>
+                                        <a href="#" title="delete"><i class="far fa-trash-alt "></i></a>
                                     </p>
                                 </li>
                             {% elseif video.plateform == 'DailyMotion' %}
                                 <li>
-                                    <a href="http://www.dailymotion.com/video/{{ video.videoAlias }}"
+                                    <a href="http://www.dailymotion.com/video/{{ video.videoId }}"
                                        class="zoombox carousel-items"></a>
-                                    <iframe frameborder="0" width="640" height="360"
-                                            src="https://www.dailymotion.com/embed/video/{{ video.videoAlias }}"
-                                            allowfullscreen=""
-                                            allow="autoplay"></iframe>
+                                    <iframe frameborder="0" width="320" height="220"
+                                            src="https://www.dailymotion.com/embed/video/{{ video.videoId }}"
+                                            allowfullscreen=""></iframe>
                                     <p class="btn-edit edit-flex mb-2">
                                         <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
-                                        <a href="#" title="edit"><i class="far fa-edit"></i></a>
                                     </p>
                                 </li>
                             {% endif %}
@@ -67,12 +73,11 @@
                     {% if trick.image %}
                         {% for image in trick.image %}
                             <li>
-                                <a href="images/gallery/{{ image.filename }}"
+                                <a href="{{ asset('images/gallery/' ~ image.filename) }}"
                                    onclick="$.zoombox.options.theme = 'simple';"
                                    class="zoombox thumb"></a>
                                 <p class="btn-edit edit-flex mb-2">
                                     <a href="#" title="delete"><i class="far fa-trash-alt"></i></a>
-                                    <a href="#" title="edit"><i class="far fa-edit"></i></a>
                                 </p>
                             </li>
                         {% endfor %}
@@ -92,17 +97,15 @@
                         </div>
                         <div id="anchor" class="border-top border-bottom py-4 text-center link-black m-5">
                             <ul class="list-inline mb-0">
-                                <li class="list-inline-item"><a href="#"><i class="far fa-calendar-plus"></i> Posted
-                                        on {{ trick.createdAt | date('m/d/y, g:i a') }}</a></li>
-                                <li class="list-inline-item"><a href="#"><i class="far fa-calendar-alt"></i> Modified
-                                        on {{ trick.updatedAt | date('m/d/y, g:i a') }}</a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fas fa-user"></i> trick.user }}</a>
-                                </li>
-                                <li class="list-inline-item"><a href="#"><i class="fas fa-tag"></i> trick.category
-                                        }}</a></li>
+                                <li class="list-inline-item"><i class="far fa-calendar-plus"></i> Posted
+                                    on {{ trick.createdAt | date('j F Y, g:i a') }}</li>
+                                <li class="list-inline-item"><i class="far fa-calendar-alt"></i> Modified
+                                    on {{ trick.updatedAt | date('j F Y, g:i a') }}</li>
+                                <li class="list-inline-item text-capitalize"><i
+                                            class="fas fa-user"></i> {{ trick.user.name }}</li>
+                                <li class="list-inline-item"><i class="fas fa-tag"></i> {{ trick.category.name }}</li>
                             </ul>
                         </div>
-
                         <div class="py-4 text-center comments">
                             <div class="divider mb-3"></div>
                             <h4 class="mb-2 font-secondary text-uppercase font-weight-normal">Leave a comment</h4>
@@ -115,53 +118,32 @@
                             </form>
                         </div>
                         <div class="mt-2 border-top mb-5 pb-4">
-                            <h4 class="font-secondary text-uppercase font-weight-normal pt-4 pb-3">Comments</h4>
-                            <div class="media">
-                                <img src="{{ asset('images/avatars/user1.jpg') }}" class="mr-4 img-fluid" alt="...">
-                                <div class="media-body">
-                                    <h4 class="mt-0 mb-0">Zander Rohan</h4>
-                                    <span>15 january 2019 At 10:30 pm</span>
-                                    <p class="mt-2">jkhgkbjkhgk jhgjf</p>
-                                    <span><a href="#anchor" class="btn reply-btn">Reply</a></span>
-                                    <div class="media mt-5">
-                                        <a class="mr-3" href="#">
-                                            <img src="{{ asset('images/avatars/user2.jpg') }}" class="mr-4 img-fluid"
-                                                 alt="...">
-                                        </a>
+                            <h4 class="font-secondary text-uppercase font-weight-normal pt-4">Comments</h4>
+                            {% if trick.comment %}
+                                {% for comment in trick.comment %}
+                                    <div class="media mt-3 mb-5">
+                                        <img src="images/avatars/{{ comment.user.image }}" class="mr-4 img-fluid avatar"
+                                             alt="{{ comment.user.name }}">
                                         <div class="media-body">
-                                            <h4 class="mt-0 mb-0">Moris hnery</h4>
-                                            <span>15 january 2019 At 10:30 pm</span>
-                                            <p class="mt-2">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                                scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate
-                                                at, tempus viverra turpis.</p>
-
+                                            <h4 class="mt-0 mb-0 text-capitalize">{{ comment.user.name }}</h4>
+                                            <span>{{ comment.createdAt | date('j F Y, g:i a') }}</span>
+                                            <p class="mt-2">{{ comment.comment | nl2br }}</p>
                                             <span><a href="#anchor" class="btn reply-btn">Reply</a></span>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="media mt-5">
-                                <img src="{{ asset('images/avatars/user1.jpg') }}" class="mr-4 img-fluid" alt="...">
-                                <div class="media-body">
-                                    <h4 class="mt-0 mb-0">Gyle hank</h4>
-                                    <span>15 january 2019 At 10:30 pm</span>
-                                    <p class="mt-2">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                        scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at,
-                                        tempus viverra turpis.</p>
-                                    <span><a href="#anchor" class="btn reply-btn">Reply</a></span>
-                                </div>
-                            </div>
+                                {% endfor %}
+                            {% else %}
+                                <p class="mt-2">No comments yet</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+    {% endblock %}
 
-{% block javascripts %}
-    <!--  Zoombox Overlay-->
-    <script src="js/zoombox.js"></script>
-    <!--  Carousel-->
-    <script src="js/carousel.js"></script>
-{% endblock %}
+    {% block javascripts %}
+        <script src="js/zoombox.js"></script>
+        <script src="js/carousel.js"></script>
+    {% endblock %}
