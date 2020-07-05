@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} - Edit{% endblock %}
+
+{% block content %}
+    <!-- Page Top section Start -->
+    {% if trick.image is defined %}
+{% for image in trick.image %}
+{% if loop.first %}
+<section class="heading"
+         style="background: url({{ asset('images/gallery/' ~ image.filename) }}) no-repeat 0 30%;background-size: cover;">
+    {% endif %}
+    {% endfor %}
+    {% else %}
+    <section class="heading">
+        {% endif %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="h3 d-inline-block mb-4 subhead text-uppercase">Edit a trick</span>
+                    <h1 class="text-uppercase text-white mb-5">
+                        {{ trick.title }}
+                    </h1>
+                    {{ include('trick/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Page Top section End -->
+    <!-- Publish section Start -->
+    <section class="contact-form section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="section-title">
+                        <div class="divider mb-3"></div>
+                        <h2>Edit</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    {{ include('trick/_form.html.twig', {'button_label': 'Update'}) }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publish section End -->
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/duplicate-fields.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} -Post{% endblock %}
+
+{% block stylesheets %}{{ parent() }}
+    <!-- zoombox.css -->
+    <link rel="stylesheet" href="{{ absolute_url(asset('css/zoombox.css')) }}">
+{% endblock %}
+
+{% block body %}
+<body id="trick">
+{% endblock %}
+
+{% block content %}
+<!-- Page Top section Start -->
+{% if trick.image is defined %}
+{% for image in trick.image %}
+{% if loop.first %}
+<section class="heading"
+         style="background: url({{ asset('images/gallery/' ~ image.filename) }}) no-repeat 0 30%;background-size: cover;">
+    {% endif %}
+    {% endfor %}
+    {% else %}
+    <section class="heading">
+        {% endif %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 subhead-link">
+                    <span class="h3 d-inline-block mb-4 subhead text-uppercase"><a href="{{ path('trick_category', {'categoryId': trick.category.id }) }}">{{ trick.category.name }}</a></span>
+                    <h1 class="text-uppercase text-white mb-5">{{ trick.title }}
+                    </h1>
+                    <h4 class="text-white"><i class="far fa-edit"></i> Publish
+                        on {{ trick.createdAt | date('(l), jS F Y') }}</h4>
+                        <div class="mt-4 d-flex">
+                            <a class="btn btn-main mr-3" href="{{ path('trick_edit', {'id': trick.id}) }}">edit</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Page Top section End -->
+    <!-- Carousel section Start -->
+    <section class="slider">
+        <div id="thumbnail-slider" class="mt-5">
+            <div class="inner">
+                <ul>
+                    {% if trick.video %}
+                        {% for video in trick.video %}
+                            {% if video.VideoId|length < 9 %}
+                                <li>
+                                    <a href="http://www.dailymotion.com/video/{{ video.videoId }}"
+                                       class="zoombox carousel-items"></a>
+                                    <iframe width="320" height="220"
+                                            src="https://www.dailymotion.com/embed/video/{{ video.videoId }}"
+                                            allowfullscreen=""></iframe>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="https://www.youtube.com/watch?v={{ video.videoId }}"
+                                       class="zoombox carousel-items"></a>
+                                    <iframe width="320" height="220"
+                                            src="https://www.youtube.com/embed/{{ video.videoId }}" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if trick.image %}
+                        {% for image in trick.image %}
+                            <li>
+                                <a href="{{ asset('images/gallery/' ~ image.filename) }}"
+                                   onclick="$.zoombox.options.theme = 'simple';"
+                                   class="zoombox thumb"></a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- Carousel section End -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 col-md-12">
+
+                <div class="row">
+                    <div class="col-lg-12 text-sd">
+                        <div class="mx-4">
+                            <p>{{ trick.content | nl2br }}</p>
+                        </div>
+                        <div id="anchor" class="border-top border-bottom py-4 text-center m-5">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item"><i class="far fa-calendar-plus"></i> Posted
+                                    {{ trick.createdAt ? trick.createdAt|date('jS F Y') : '' }} at {{ trick.createdAt ? trick.createdAt|date('g:i a') : '' }}</li>
+
+                    {% if trick.updatedAt %}
+                                <li class="list-inline-item"><i class="far fa-calendar-alt"></i> Updated
+                                    {{ trick.updatedAt ? trick.updatedAt|date('jS F Y') : '' }} at {{ trick.updatedAt ? trick.updatedAt|date('g:i a') : '' }}</li>
+
+                    {% endif %}
+                                <li class="list-inline-item text-capitalize"><a href="{{ path('trick_user', {'userId': trick.user.id }) }}"><i
+                                            class="fas fa-user"></i> {{ trick.user.name }}</a></li>
+                                <li class="list-inline-item"><a href="{{ path('trick_category', {'categoryId': trick.category.id }) }}"><i class="fas fa-tag"></i> {{ trick.category.name }}</a></li>
+                            </ul>
+                        </div>
+                        <div class="py-4 text-center comments">
+                            <div class="divider mb-3"></div>
+                            <h4 class="mb-2 font-secondary text-uppercase font-weight-normal">Leave a comment</h4>
+                            <form action="#" class="text-left">
+                                <div class="form-group text-center">
+                                    <label for="msg"></label><textarea name="msg" id="msg" cols="30" rows="6" class="form-control"
+                                              placeholder="Your Comment"></textarea>
+                                    <a href="#" class="btn btn-main mt-4">Add Comment</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="mt-2 mb-5 pb-4 border-top">
+                            <h4 class="font-secondary text-uppercase font-weight-normal pt-4">Comments</h4>
+                            {% if trick.comment %}
+                                {% for comment in trick.comment %}
+                                    <div class="media mt-3 mb-5">
+                                        <img src="images/avatars/{{ comment.user.image }}" class="mr-4 img-fluid avatar"
+                                             alt="{{ comment.user.name }}">
+                                        <div class="media-body">
+                                            <h4 class="mt-0 mb-0 text-capitalize">{{ comment.user.name }}</h4>
+                                            <span>{{ comment.createdAt | date('jS F Y') }} at {{ comment.createdAt | date('g:i a') }}</span>
+                                            <p class="mt-2">{{ comment.comment | nl2br }}</p>
+                                            <span><a href="#anchor" class="btn reply-btn">Reply</a></span>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block javascripts %}
+        <script src="{{ asset('js/zoombox.js') }}"></script>
+        <script src="{{ asset('js/carousel.js') }}"></script>
+    {% endblock %}

@@ -5,20 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}SnowTricks{% endblock %}</title>
     {% block stylesheets %}
-        <!-- bootstrap.min css -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <!-- Main Stylesheet -->
-        <link rel="stylesheet" href="css/style.css">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="css/font-awesome.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+        <link rel="stylesheet" href="{{ absolute_url(asset('css/bootstrap.min.css')) }}">
+        <link rel="stylesheet" href="{{ absolute_url(asset('css/style.css')) }}">
+        <link rel="stylesheet" href="{{ absolute_url(asset('css/font-awesome.css')) }}">
     {% endblock %}
 </head>
 {% block body %}
 <body>
 {% endblock %}
 <!-- Section Menu Start -->
-<!-- Header Start -->
 <nav class="navbar navbar-expand-lg navigation fixed-top" id="navbar">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
@@ -29,46 +24,43 @@
         <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-chevron-circle-up"></i></button>
         <nav role="navigation" id="navToggle">
             <div id="menuToggle" class="hidden-md-up">
-                <input type="checkbox"/>
+                <label>
+                    <input type="checkbox"/>
+                </label>
                 <span></span>
                 <span></span>
                 <span></span>
                 <ul id="menu">
                     <li><a href="/" class="text-white">Home</a></li>
-                    <li><a href="{{ path('new.trick') }}" class="text-white">Publish</a></li>
+                    <li><a href="{{ path('trick_new') }}" class="text-white">Publish</a></li>
                     <li><a href="{{ path('contact') }}" class="text-white">Contact</a></li>
-                    <li><a href="{{ path('contact') }}" class="text-white">Admin</a></li>
-                    <li><a href="{{ path('securitySignUp') }}" class="text-color">Sign up</a></li>
-                    <li><a href="{{ path('securitySignIn') }}" class="text-color">Sign in</a></li>
+                    <li><a href="{{ path('sign-up') }}" class="text-color">Sign up</a></li>
+                    <li><a href="{{ path('sign-in') }}" class="text-color">Sign in</a></li>
                 </ul>
             </div>
         </nav>
         <div class="collapse text-center navbar-collapse" id="navbarsid">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ path('new.trick') }}">Publish</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ path('admin.trick') }}">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('trick_new') }}">Publish</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">Contact</a></li>
             </ul>
             <div class="my-md-0 ml-lg-4 mt-4 mt-lg-0 ml-auto text-lg-right mb-3 mb-lg-0">
                 <ul class="navbar-nav mx-auto">
-                    <li><a href="{{ path('securitySignUp') }}" class="text-color font-weight-bold mr-lg-2">Sign up </a>
+                    <li><a href="{{ path('sign-up') }}" class="text-color font-weight-bold mr-lg-2">Sign up </a>
                     </li>
-                    <li><a href="{{ path('securitySignIn') }}" class="text-color font-weight-bold navbar-sign">Sign
+                    <li><a href="{{ path('sign-in') }}" class="text-color font-weight-bold navbar-sign">Sign
                             in</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </nav>
-<!-- Header Close -->
+<!-- Section Menu End -->
 <div class="main-wrapper ">
-    <!-- Section Menu End -->
     {% block content %}
-        <p>Pas de contenu</p>
     {% endblock %}
     <!-- Section Footer Start -->
-    <!-- footer Start -->
     <footer class="footer bg-black-50">
         <div class="container">
             <div class="row">
@@ -96,9 +88,9 @@
                         <h4 class="mb-4 text-white letter-spacing text-uppercase">Quick Links</h4>
                         <ul class="list-unstyled footer-menu lh-40 mb-0">
                             <li><a href="/"><i class="fas fa-angle-double-right"></i> SnowTricks</a></li>
-                            <li><a href="{{ path('securitySignUp') }}"><i class="fas fa-angle-double-right"></i> Joins
+                            <li><a href="{{ path('sign-up') }}"><i class="fas fa-angle-double-right"></i> Joins
                                     us</a></li>
-                            <li><a href="{{ path('securitySignIn') }}"><i class="fas fa-angle-double-right"></i> Sign
+                            <li><a href="{{ path('sign-in') }}"><i class="fas fa-angle-double-right"></i> Sign
                                     in</a></li>
                             <li><a href="{{ path('contact') }}"><i class="fas fa-angle-double-right"></i> Contact us</a>
                             </li>
@@ -143,13 +135,12 @@
     </footer>
     <!-- Section Footer End -->
 </div>
-<!-- Main jQuery -->
-<script src="js/jquery.js"></script>
-<!-- Bootstrap 4.3.1 -->
-<script src="js/bootstrap.min.js"></script>
+<!-- Javascripts -->
+<script src="{{ absolute_url(asset('js/jquery.js')) }}"></script>
+<script src="{{ absolute_url(asset('js/bootstrap.min.js')) }}"></script>
 {% block javascripts %}
 {% endblock %}
-<script src="js/script.js"></script>
-<script src="js/scroll.js"></script>
+<script src="{{ absolute_url(asset('js/script.js')) }}"></script>
+<script src="{{ absolute_url(asset('js/scroll.js')) }}"></script>
 </body>
 </html>
