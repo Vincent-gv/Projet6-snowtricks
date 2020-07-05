@@ -4,14 +4,27 @@
 namespace App\Controller;
 
 
+use App\Form\UserType;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/connection", name="securitySignIn")
+     * @var UserRepository
+     */
+    private $repository;
+
+    public function __construct(UserRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
+     * @Route("/sign-in", name="sign-in")
      * @return Response
      */
     public function securitySignIn(): Response
@@ -20,16 +33,29 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/suscribe", name="securitySignUp")
+     * @Route("/sign-up", name="sign-up")
+     * @param Request $request
      * @return Response
      */
-    public function securitySignUp(): Response
+    public function securitySignUp(Request $request): Response
     {
-        return $this->render('pages/security-sign-up.html.twig');
+        $form = $this->createForm(UserType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $figure = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($figure);
+            $entityManager->flush();
+            $this->addFlash('success', 'New user successfully created !');
+            return  $this->redirectToRoute('home');
+        }
+        return $this->render('pages/security-sign-up.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
-     * @Route("/reset-password", name="securityResetPassword")
+     * @Route("/reset-password", name="reset-password")
      * @return Response
      */
     public function securityResetPassword(): Response
