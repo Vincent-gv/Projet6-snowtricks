@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\TrickRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=TrickRepository::class)
+ * @UniqueEntity(fields="title", message= "This title already exist.")
+ * @ORM\Table(indexes={@ORM\Index(name="slug_idx",columns={"slug"}, options={"length": 255})})
  */
 class Trick
 {
@@ -21,6 +26,7 @@ class Trick
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min = 2, max = 255)
      */
     private $title;
 
@@ -31,6 +37,7 @@ class Trick
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(min = 2, max = 255)
      */
     private $content;
 
@@ -119,24 +126,24 @@ class Trick
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(?DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
