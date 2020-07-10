@@ -81,6 +81,7 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $trick->setUpdatedAt(new DateTime());
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'Trick was successfully modified !');
             return $this->redirectToRoute('home');
@@ -140,7 +141,7 @@ class TrickController extends AbstractController
         $trick = $trickRepository->findBy(['user' => $userId]);
         $user = $UserRepository->find(['id' => $userId]);
 
-        return $this->render('pages/user.html.twig', [
+        return $this->render('trick/user.html.twig', [
             'tricks' => $trick,
             'user' => $user,
         ]);

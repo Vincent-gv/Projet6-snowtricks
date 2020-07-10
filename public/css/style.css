@@ -94,6 +94,14 @@ iframe {
 .form-control {
     font-size: 15px;
 }
+.form-group .errors ul {
+    list-style: none;
+    padding: 0;
+    font-size: 13px;
+    color: #d71313;
+    line-height: 21px;
+    margin-bottom: 3px;
+}
 
 .btn {
     display: inline-block;
@@ -108,7 +116,7 @@ iframe {
 }
 
 .btn-main, .btn-transparent, .btn-small {
-    background: linear-gradient(90deg, #1cc8ff 0%, #62d9ff 100%);
+    background: linear-gradient(90deg, #00c1ff 0%, #30cdff 100%);
     color: #fff;
 }
 

@@ -1,21 +1,23 @@
 {{ form_start(form) }}
 <div class="row">
-    {{ form_errors(form) }}
 </div>
 <div id="contact-form">
     <div class="form-row">
         <div class="col-lg-9 col-md-9 col-sm-12">
             <div class="form-group">
+                {{ form_errors(form.title) }}
                 {{ form_widget(form.title, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Trick Name'}}) }}
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="form-group">
+                {{ form_errors(form.category) }}
                 {{ form_widget(form.category, {'attr': {'class': 'custom-select'}}) }}
             </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="form-group">
+                {{ form_errors(form.content) }}
                 {{ form_widget(form.content, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Description','rows': '3'}}) }}
             </div>
         </div>
@@ -24,19 +26,11 @@
         </div>
     </div>
     <div id="add-video" class="row">
-        {#        <div class="col-lg-5 col-md-5 col-sm-6">#}
-        {#            <select id="group" class="custom-select" name="group">#}
-        {#                <option value="">Select Video Plateform</option>#}
-        {#                <option value="YouTube">YouTube</option>#}
-        {#                <option value="DailyMotion">DailyMotion</option>#}
-        {#            </select>#}
-        {#        </div>#}
-        {#        <div class="col-lg-7 col-md-7 col-sm-6">#}
         <div class="col-lg-12 col-md-12 col-sm-12">
-            {% if trick.video %}
+            {% if trick.videos %}
                 <p>Videos currently attached to this trick:</p>
                 <div class="d-flex flex-wrap justify-content-center">
-                    {% for video in trick.video %}
+                    {% for video in trick.videos %}
                         {% if video.VideoId|length < 9 %}
                             <div class="mb-3 mr-1">
                                 <a href="http://www.dailymotion.com/video/{{ video.videoId }}"

@@ -23,17 +23,12 @@ class Comment
     private $comment;
 
     /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $status;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="Comment")
+     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="comments")
      */
     private $trick;
 
@@ -56,18 +51,6 @@ class Comment
     public function setComment(string $comment): self
     {
         $this->comment = $comment;
-
-        return $this;
-    }
-
-    public function getStatus(): ?string
-    {
-        return $this->status;
-    }
-
-    public function setStatus(string $status): self
-    {
-        $this->status = $status;
 
         return $this;
     }

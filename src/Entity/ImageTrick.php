@@ -28,7 +28,7 @@ class ImageTrick
     private $alt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="image")
+     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="images")
      * @ORM\JoinColumn(nullable=false)
      */
     private $trick;

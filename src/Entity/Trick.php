@@ -54,17 +54,17 @@ class Trick
     /**
      * @ORM\OneToMany(targetEntity=ImageTrick::class, mappedBy="trick", orphanRemoval=true)
      */
-    private $image;
+    private $images;
 
     /**
      * @ORM\OneToMany(targetEntity=VideoTrick::class, mappedBy="trick")
      */
-    private $Video;
+    private $videos;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="trick")
      */
-    private $Comment;
+    private $comments;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Trick")
@@ -80,9 +80,9 @@ class Trick
 
     public function __construct()
     {
-        $this->image = new ArrayCollection();
-        $this->Video = new ArrayCollection();
-        $this->Comment = new ArrayCollection();
+        $this->images = new ArrayCollection();
+        $this->videos = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -153,15 +153,15 @@ class Trick
     /**
      * @return Collection|ImageTrick[]
      */
-    public function getImage(): Collection
+    public function getImages(): Collection
     {
-            return $this->image;
+            return $this->images;
     }
 
     public function addImage(ImageTrick $image): self
     {
-        if (!$this->image->contains($image)) {
-            $this->image[] = $image;
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
             $image->setTrick($this);
         }
 
@@ -170,8 +170,8 @@ class Trick
 
     public function removeImage(ImageTrick $image): self
     {
-        if ($this->image->contains($image)) {
-            $this->image->removeElement($image);
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
             // set the owning side to null (unless already changed)
             if ($image->getTrick() === $this) {
                 $image->setTrick(null);
@@ -184,15 +184,15 @@ class Trick
     /**
      * @return Collection|VideoTrick[]
      */
-    public function getVideo(): Collection
+    public function getVideos(): Collection
     {
-        return $this->Video;
+        return $this->videos;
     }
 
     public function addVideo(VideoTrick $video): self
     {
-        if (!$this->Video->contains($video)) {
-            $this->Video[] = $video;
+        if (!$this->videos->contains($video)) {
+            $this->videos[] = $video;
             $video->setTrick($this);
         }
 
@@ -201,8 +201,8 @@ class Trick
 
     public function removeVideo(VideoTrick $video): self
     {
-        if ($this->Video->contains($video)) {
-            $this->Video->removeElement($video);
+        if ($this->videos->contains($video)) {
+            $this->videos->removeElement($video);
             // set the owning side to null (unless already changed)
             if ($video->getTrick() === $this) {
                 $video->setTrick(null);
@@ -215,15 +215,15 @@ class Trick
     /**
      * @return Collection|Comment[]
      */
-    public function getComment(): Collection
+    public function getComments(): Collection
     {
-        return $this->Comment;
+        return $this->comments;
     }
 
     public function addComment(Comment $comment): self
     {
-        if (!$this->Comment->contains($comment)) {
-            $this->Comment[] = $comment;
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
             $comment->setTrick($this);
         }
 
@@ -232,8 +232,8 @@ class Trick
 
     public function removeComment(Comment $comment): self
     {
-        if ($this->Comment->contains($comment)) {
-            $this->Comment->removeElement($comment);
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
             // set the owning side to null (unless already changed)
             if ($comment->getTrick() === $this) {
                 $comment->setTrick(null);

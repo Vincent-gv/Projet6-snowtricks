@@ -20,13 +20,11 @@ class Trick1Type extends AbstractType
             ->add('content')
             ->add('slug')
             ->add('category', EntityType::class, [
-
                 'placeholder' => 'Choose a category',
                 'class' => Category::class,
                 'choice_label' => 'name'
             ])
             ->add('user', EntityType::class, [
-
                 'placeholder' => 'Choose a user',
                 'class' => User::class,
                 'choice_label' => 'name'

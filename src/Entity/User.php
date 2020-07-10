@@ -6,11 +6,16 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"name"}, message="This account already exists. Please log in.")
+ * @UniqueEntity(fields={"email"}, message="This email address already exists")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -21,16 +26,21 @@ class User
 
     /**
      * @ORM\Column(type="string", length=55)
+     * @Assert\NotBlank(message="You must enter an username")
+     * @Assert\Length(min = 3, minMessage="Name must contain at least 3 characters", max="55")
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=55)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="You must enter an email")
+     * @Assert\Length(min = 6, minMessage="Please enter a valid email", max="255")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min = 4, minMessage="Password must contain at least 4 characters")
      */
     private $password;
 
@@ -168,5 +178,25 @@ class User
         $this->image = $image;
 
         return $this;
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
     }
 }

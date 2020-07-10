@@ -4,8 +4,8 @@
 
 {% block content %}
     <!-- Page Top section Start -->
-    {% if trick.image is defined %}
-{% for image in trick.image %}
+    {% if trick.images is defined %}
+{% for image in trick.images %}
 {% if loop.first %}
 <section class="heading"
          style="background: url({{ asset('images/gallery/' ~ image.filename) }}) no-repeat 0 30%;background-size: cover;">

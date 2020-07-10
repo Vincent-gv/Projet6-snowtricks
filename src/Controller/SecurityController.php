@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
 {
@@ -37,14 +38,19 @@ class SecurityController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function securitySignUp(Request $request): Response
+    public function securitySignUp(Request $request
+//        , UserPasswordEncoderInterface $encoder
+    ): Response
     {
         $form = $this->createForm(UserType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $figure = $form->getData();
+            // TODO: password hash
+//            $hash = $encoder->encodePassword($user, $user->getPassword());
+//            $user->setPassword($hash);
+            $user = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($figure);
+            $entityManager->persist($user);
             $entityManager->flush();
             $this->addFlash('success', 'New user successfully created !');
             return  $this->redirectToRoute('home');

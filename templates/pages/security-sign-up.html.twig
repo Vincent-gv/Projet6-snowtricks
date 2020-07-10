@@ -12,8 +12,8 @@
                     <h1 class="text-uppercase text-white mb-5">Sign up
                         <span class="text-color">snowtrick</span>
                     </h1>
-                        <h4 class="text-white"><i class="fas fa-sign-in-alt"></i> Sign Up to publish or modify tricks
-                        </h4>
+                    <h4 class="text-white"><i class="fas fa-sign-in-alt"></i> Sign Up to publish or modify tricks
+                    </h4>
                 </div>
             </div>
         </div>
@@ -34,28 +34,41 @@
             </div>
             <div class="row justify-content-center pb-5">
                 <div class="col-lg-4 text-center">
-                    {% if not form.vars.valid %}
-                    <P> {{ form_errors(form) }}</P>
-                    {% endif %}
-                    <form id="contact-form" novalidate="novalidate">
+                    <form id="contact-form">
                         <div class="form-row">
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    {{ form_widget(form.name, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Name*'}}) }}
+                                    {% if form_errors(form.name) %}
+                                        <div class="errors">
+                                            {{ form_errors(form.name) }}
+                                        </div>
+                                    {% endif  %}
+                                    {{ form_widget(form.name, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Name',
+                                        'oninvalid' : "setCustomValidity('Name must contain at least 3 characters'
+                                        )"}}) }}
                                 </div>
                                 <div class="form-group">
-                                    {{ form_widget(form.email, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Email*'}}) }}
+                                    {% if form_errors(form.email) %}
+                                        <div class="errors">
+                                            {{ form_errors(form.email) }}
+                                        </div>
+                                    {% endif  %}
+                                    {{ form_widget(form.email, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Email'}}) }}
                                 </div>
                                 <div class="form-group">
-                                    {{ form_widget(form.password.first, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Password*'}}) }}
+                                    {% if form_errors(form.password.first) %}
+                                        <div class="errors">
+                                            {{ form_errors(form.password.first) }}
+                                        </div>
+                                    {% endif  %}
+                                    {{ form_widget(form.password.first, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Password'}}) }}
                                 </div>
                                 <div class="form-group">
-                                    {{ form_widget(form.password.second, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Repeat Password*'}}) }}
+                                    {{ form_widget(form.password.second, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Confirm password'}}) }}
                                 </div>
                                 <div class="form-group">
                                     {{ form_widget(form.image, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Profil picture'}}) }}
                                 </div>
-                                <p>*Required</p>
                                 {{ form_row(form._token) }}
                                 <button class="btn btn-main mt-3 " type="submit">Register</button>
                             </div>
