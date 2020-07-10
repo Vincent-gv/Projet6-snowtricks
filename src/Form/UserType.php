@@ -18,7 +18,8 @@ class UserType extends AbstractType
             ->add('name')
             ->add('email', EmailType::class)
             ->add('password', RepeatedType::class,
-                ['type' => PasswordType::class])
+                ['type' => PasswordType::class,
+                    'invalid_message' => 'Passwords are not identicals'])
             ->add('image');
     }
 

@@ -13,8 +13,8 @@
 
 {% block content %}
 <!-- Page Top section Start -->
-{% if trick.image is defined %}
-{% for image in trick.image %}
+{% if trick.images is defined %}
+{% for image in trick.images %}
 {% if loop.first %}
 <section class="heading"
          style="background: url({{ asset('images/gallery/' ~ image.filename) }}) no-repeat 0 30%;background-size: cover;">
@@ -44,8 +44,8 @@
         <div id="thumbnail-slider" class="mt-5">
             <div class="inner">
                 <ul>
-                    {% if trick.video %}
-                        {% for video in trick.video %}
+                    {% if trick.videos %}
+                        {% for video in trick.videos %}
                             {% if video.VideoId|length < 9 %}
                                 <li>
                                     <a href="http://www.dailymotion.com/video/{{ video.videoId }}"
@@ -65,8 +65,8 @@
                             {% endif %}
                         {% endfor %}
                     {% endif %}
-                    {% if trick.image %}
-                        {% for image in trick.image %}
+                    {% if trick.images %}
+                        {% for image in trick.images %}
                             <li>
                                 <a href="{{ asset('images/gallery/' ~ image.filename) }}"
                                    onclick="$.zoombox.options.theme = 'simple';"
@@ -85,7 +85,7 @@
 
                 <div class="row">
                     <div class="col-lg-12 text-sd">
-                        <div class="mx-4">
+                        <div class="mx-4 text-justify">
                             <p>{{ trick.content | nl2br }}</p>
                         </div>
                         <div id="anchor" class="border-top border-bottom py-4 text-center m-5">
@@ -116,8 +116,8 @@
                         </div>
                         <div class="mt-2 mb-5 pb-4 border-top">
                             <h4 class="font-secondary text-uppercase font-weight-normal pt-4">Comments</h4>
-                            {% if trick.comment %}
-                                {% for comment in trick.comment %}
+                            {% if trick.comments %}
+                                {% for comment in trick.comments %}
                                     <div class="media mt-3 mb-5">
                                         <img src="images/avatars/{{ comment.user.image }}" class="mr-4 img-fluid avatar"
                                              alt="{{ comment.user.name }}">

@@ -8,7 +8,9 @@
 
         }
         else if ($('.navigation').offset().top > 0) {
-            $('.sticky-message').delay(1000).fadeOut(500);
+            setTimeout(function(){
+            $('.sticky-message').fadeOut('slow');
+            },2000)
 
         }
         else {
