@@ -4,7 +4,10 @@ namespace App\Repository;
 
 use App\Entity\Trick;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * @method Trick|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +22,45 @@ class TrickRepository extends ServiceEntityRepository
         parent::__construct($registry, Trick::class);
     }
 
-    // /**
-    //  * @return Trick[] Returns an array of Trick objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
+    /**
+     * @param $page
+     * @param $limit
+     * @return Paginator
+     */
+    public function paginate(int $page, int $limit){
+        if (!is_numeric($page)) {
+            throw new \InvalidArgumentException(
+                'Incorrect page value'
+            );
+        }
+        if (!is_numeric($limit)) {
+            throw new \InvalidArgumentException(
+                'Incorrect limit value'
+            );
+        }
+        $query = $this->createQueryBuilder('t')
+            ->addOrderBy('t.id', 'DESC')
             ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit);
 
-    /*
-    public function findOneBySomeField($value): ?Trick
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return new Paginator($query);
     }
-    */
+
+    /**
+     * @return integer - Number of tricks
+     */
+    public function totalTricks() {
+        //  Query how many rows are there in the Trick table
+        try {
+            $query = $this->createQueryBuilder('t')
+                ->select('count(t.id)')
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (NoResultException $e) {
+        } catch (NonUniqueResultException $e) {
+        }
+
+        return $query;
+    }
 }
