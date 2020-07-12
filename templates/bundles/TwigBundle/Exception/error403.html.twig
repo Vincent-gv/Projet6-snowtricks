@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} - 403 not found{% endblock %}
+
+{% block content %}
+    <!-- Page Top section Start -->
+    <section class="heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <span class="h6 d-inline-block mb-4 subhead text-uppercase">403 error</span>
+                    <h1 class="text-uppercase text-white mb-5">
+                        <span class="text-color">403</span> / not found
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Page Top section End -->
+    <!-- Section Error Start -->
+    <section class="section">
+        <div class="container">
+            <div class="row justify-content-center text-center my-5">
+                <h3>The requested page couldn't be located. Checkout for any URL
+                    misspelling or <a href="{{ path('home') }}"><br>return to the homepage</a>
+                </h3>
+            </div>
+        </div>
+    </section>
+    <!-- Section Error End -->
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} - Error{% endblock %}
+
+{% block content %}
+    <!-- Page Top section Start -->
+    <section class="heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <span class="h6 d-inline-block mb-4 subhead text-uppercase">Snowboard Tricks</span>
+                    <h1 class="text-uppercase text-white mb-5">
+                        <span class="text-color">Error</span> / not found
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Page Top section End -->
+    <!-- Section Error Start -->
+    <section class="section">
+        <div class="container">
+            <div class="row justify-content-center text-center my-5">
+                <h3>It seems that an error occurred.<a href="{{ path('home') }}"><br>return to the homepage</a>
+                </h3>
+            </div>
+        </div>
+    </section>
+    <!-- Section Error End -->
+{% endblock %}
