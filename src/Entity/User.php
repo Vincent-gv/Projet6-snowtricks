@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"name"}, message="This account already exists. Please log in.")
+ * @UniqueEntity(fields={"username"}, message="This account already exists. Please log in.")
  * @UniqueEntity(fields={"email"}, message="This email address already exists")
  */
 class User implements UserInterface
@@ -29,7 +29,7 @@ class User implements UserInterface
      * @Assert\NotBlank(message="You must enter an username")
      * @Assert\Length(min = 3, minMessage="Name must contain at least 3 characters", max="55")
      */
-    private $name;
+    private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -70,14 +70,14 @@ class User implements UserInterface
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->name;
+        return $this->username;
     }
 
-    public function setName(string $name): self
+    public function setUsername(string $username): self
     {
-        $this->name = $name;
+        $this->username = $username;
 
         return $this;
     }
@@ -195,8 +195,4 @@ class User implements UserInterface
         return ['ROLE_USER'];
     }
 
-    public function getUsername()
-    {
-        // TODO: Implement getUsername() method.
-    }
 }

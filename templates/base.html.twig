@@ -32,25 +32,39 @@
                 <span></span>
                 <ul id="menu">
                     <li><a href="/" class="text-white">Home</a></li>
+                    {% if app.user %}
                     <li><a href="{{ path('trick_new') }}" class="text-white">Publish</a></li>
+                    {% endif %}
                     <li><a href="{{ path('contact') }}" class="text-white">Contact</a></li>
-                    <li><a href="{{ path('sign-up') }}" class="text-color">Sign up</a></li>
-                    <li><a href="{{ path('sign-in') }}" class="text-color">Sign in</a></li>
+                    {% if app.user %}
+                        <li>Welcome !</li>
+                        <li><a href="{{ path('app_logout') }}" class="text-color">Log out <i class="fas fa-sign-out-alt"></i>
+                            </a></li>
+                    {% else %}
+                        <li><a href="{{ path('sign-up') }}" class="text-color">Sign up</a></li>
+                        <li><a href="{{ path('sign-in') }}" class="text-color">Sign in</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
         <div class="collapse text-center navbar-collapse" id="navbarsid">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                {% if app.user %}
                 <li class="nav-item"><a class="nav-link" href="{{ path('trick_new') }}">Publish</a></li>
+                {% endif %}
                 <li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">Contact</a></li>
             </ul>
             <div class="my-md-0 ml-lg-4 mt-4 mt-lg-0 ml-auto text-lg-right mb-3 mb-lg-0">
                 <ul class="navbar-nav mx-auto">
-                    <li><a href="{{ path('sign-up') }}" class="text-color font-weight-bold mr-lg-2">Sign up </a>
-                    </li>
-                    <li><a href="{{ path('sign-in') }}" class="text-color font-weight-bold navbar-sign">Sign
-                            in</a></li>
+
+                    {% if app.user %}
+                        <li class="text-white text-capitalize">Welcome {{ app.user.username }} !</li>
+                        <li><a href="{{ path('app_logout') }}" class="text-color"> <i class="fas fa-sign-out-alt"></i></a></li>
+                    {% else %}
+                        <li><a href="{{ path('sign-up') }}" class="text-color">Sign up</a></li>
+                        <li><a href="{{ path('sign-in') }}" class="text-color">Sign in</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -87,13 +101,17 @@
                     <div class="footer-widget">
                         <h4 class="mb-4 text-white letter-spacing text-uppercase">Quick Links</h4>
                         <ul class="list-unstyled footer-menu lh-40 mb-0">
-                            <li><a href="/"><i class="fas fa-angle-double-right"></i> SnowTricks</a></li>
-                            <li><a href="{{ path('sign-up') }}"><i class="fas fa-angle-double-right"></i> Joins
-                                    us</a></li>
-                            <li><a href="{{ path('sign-in') }}"><i class="fas fa-angle-double-right"></i> Sign
-                                    in</a></li>
                             <li><a href="{{ path('contact') }}"><i class="fas fa-angle-double-right"></i> Contact us</a>
                             </li>
+                            <li><a href="/"><i class="fas fa-angle-double-right"></i> SnowTricks</a></li>
+                            {% if app.user %}
+                                <li><a href="{{ path('app_logout') }}" class="text-color"><i class="fas fa-sign-out-alt"></i> Log out
+                            {% else %}
+                                <li><a href="{{ path('sign-up') }}"><i class="fas fa-angle-double-right"></i> Joins
+                                        us</a></li>
+                                <li><a href="{{ path('sign-in') }}"><i class="fas fa-angle-double-right"></i> Sign
+                                        in</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>

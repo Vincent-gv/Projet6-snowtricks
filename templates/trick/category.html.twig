@@ -23,10 +23,12 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="card border-0 rounded-0 p-0 mb-5 mb-lg-4 shadow-sm">
                         <h6 class="card-label"><span class="category badge badge-dark">{{ trick.category.name }}</span></h6>
+                        {% if app.user %}
                         <p class="btn-edit mb-2">
                             <a href="{{ path('trick_edit', {'id': trick.id}) }}" title="edit"><i class="far fa-edit"></i></a>
                         </p>
                             {{ include('trick/_delete_form_btn.html.twig') }}
+                        {% endif %}
                         {% if trick.images is defined %}
                         {% for image in trick.images %}
                             {% if loop.first %}

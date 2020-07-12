@@ -31,9 +31,11 @@
                     </h1>
                     <h4 class="text-white"><i class="far fa-edit"></i> Publish
                         on {{ trick.createdAt | date('(l), jS F Y') }}</h4>
+                            {% if app.user %}
                         <div class="mt-4 d-flex">
                             <a class="btn btn-main mr-3" href="{{ path('trick_edit', {'id': trick.id}) }}">edit</a>
                         </div>
+                            {% endif %}
                 </div>
             </div>
         </div>
@@ -99,7 +101,7 @@
 
                     {% endif %}
                                 <li class="list-inline-item text-capitalize"><a href="{{ path('trick_user', {'userId': trick.user.id }) }}"><i
-                                            class="fas fa-user"></i> {{ trick.user.name }}</a></li>
+                                            class="fas fa-user"></i> {{ trick.user.username }}</a></li>
                                 <li class="list-inline-item"><a href="{{ path('trick_category', {'categoryId': trick.category.id }) }}"><i class="fas fa-tag"></i> {{ trick.category.name }}</a></li>
                             </ul>
                         </div>
@@ -120,9 +122,9 @@
                                 {% for comment in trick.comments %}
                                     <div class="media mt-3 mb-5">
                                         <img src="images/avatars/{{ comment.user.image }}" class="mr-4 img-fluid avatar"
-                                             alt="{{ comment.user.name }}">
+                                             alt="{{ comment.user.username }}">
                                         <div class="media-body">
-                                            <h4 class="mt-0 mb-0 text-capitalize">{{ comment.user.name }}</h4>
+                                            <h4 class="mt-0 mb-0 text-capitalize">{{ comment.user.username }}</h4>
                                             <span>{{ comment.createdAt | date('jS F Y') }} at {{ comment.createdAt | date('g:i a') }}</span>
                                             <p class="mt-2">{{ comment.comment | nl2br }}</p>
                                             <span><a href="#anchor" class="btn reply-btn">Reply</a></span>

@@ -1,9 +1,8 @@
 <?php
 
-
 namespace App\Controller;
 
-
+use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,38 +24,29 @@ class SecurityController extends AbstractController
         $this->repository = $repository;
     }
 
-//    /**
-//     * @Route("/sign-in", name="sign-in")
-//     * @return Response
-//     */
-//    public function securitySignIn(): Response
-//    {
-//        return $this->render('pages/security-sign-in.html.twig');
-//    }
-
     /**
      * @Route("/sign-up", name="sign-up")
      * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
      * @return Response
      */
-    public function securitySignUp(Request $request
-//        , UserPasswordEncoderInterface $encoder
-    ): Response
+    public function securitySignUp(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
-        $form = $this->createForm(UserType::class);
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // TODO: password hash
-//            $hash = $encoder->encodePassword($user, $user->getPassword());
-//            $user->setPassword($hash);
+            $plainPassword = $user->getPassword();
+            $encoded = $encoder->encodePassword($user, $plainPassword);
+            $user->setPassword($encoded);
             $user = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
             $this->addFlash('success', 'New user successfully created !');
-            return  $this->redirectToRoute('home');
+            return $this->redirectToRoute('home');
         }
-        return $this->render('pages/security-sign-up.html.twig', [
+        return $this->render('security/security-sign-up.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -67,7 +57,7 @@ class SecurityController extends AbstractController
      */
     public function securityResetPassword(): Response
     {
-        return $this->render('pages/security-reset-password.html.twig');
+        return $this->render('security/security-reset-password.html.twig');
     }
 
     /**
@@ -77,15 +67,12 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-         if ($this->getUser()) {
-             return $this->redirectToRoute('home');
-         }
-
-        // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-        return $this->render('pages/security-sign-in.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/security-sign-in.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error
+        ]);
     }
 
     /**
@@ -93,6 +80,7 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
+        $this->addFlash('success', 'You have been successfully logged out');
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }
