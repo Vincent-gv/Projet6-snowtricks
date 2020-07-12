@@ -27,15 +27,19 @@
             <div class="row">
                 <div class="col-md-12 subhead-link">
                     <span class="h3 d-inline-block mb-4 subhead text-uppercase"><a href="{{ path('trick_category', {'categoryId': trick.category.id }) }}">{{ trick.category.name }}</a></span>
-                    <h1 class="text-uppercase text-white mb-5">{{ trick.title }}
+                    <h1 class="text-uppercase text-white mb-4">{{ trick.title }}
                     </h1>
                     <h4 class="text-white"><i class="far fa-edit"></i> Publish
                         on {{ trick.createdAt | date('(l), jS F Y') }}</h4>
-                            {% if app.user %}
                         <div class="mt-4 d-flex">
+                            {% if app.user %}
                             <a class="btn btn-main mr-3" href="{{ path('trick_edit', {'id': trick.id}) }}">edit</a>
+                    {% else %}
+                    <a href="{{ path('sign-in') }}" class="btn btn-main "><i class="fas fa-lock"></i> Sign in to edit
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                    {% endif %}
                         </div>
-                            {% endif %}
                 </div>
             </div>
         </div>
@@ -108,16 +112,16 @@
                         <div class="py-4 text-center comments">
                             <div class="divider mb-3"></div>
                             <h4 class="mb-2 font-secondary text-uppercase font-weight-normal">Leave a comment</h4>
-                            <form action="#" class="text-left">
-                                <div class="form-group text-center">
-                                    <label for="msg"></label><textarea name="msg" id="msg" cols="30" rows="6" class="form-control"
-                                              placeholder="Your Comment"></textarea>
-                                    <a href="#" class="btn btn-main mt-4">Add Comment</a>
-                                </div>
-                            </form>
+                            {% if app.user %}
+{#                            {{ include('trick/_comment_form.html.twig') }}#}
+                            {% else %}
+                    <a href="{{ path('sign-in') }}" class="btn btn-main my-3"><i class="fas fa-lock"></i> Sign in to comment
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                            {% endif %}
                         </div>
                         <div class="mt-2 mb-5 pb-4 border-top">
-                            <h4 class="font-secondary text-uppercase font-weight-normal pt-4">Comments</h4>
+                            <h4 class="font-secondary text-uppercase font-weight-normal mt-4 mb-4">{{ trick.comments | length }} Comments</h4>
                             {% if trick.comments %}
                                 {% for comment in trick.comments %}
                                     <div class="media mt-3 mb-5">

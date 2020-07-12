@@ -32,12 +32,10 @@
                 <span></span>
                 <ul id="menu">
                     <li><a href="/" class="text-white">Home</a></li>
-                    {% if app.user %}
                     <li><a href="{{ path('trick_new') }}" class="text-white">Publish</a></li>
-                    {% endif %}
                     <li><a href="{{ path('contact') }}" class="text-white">Contact</a></li>
                     {% if app.user %}
-                        <li>Welcome !</li>
+                        <li><i class="fas fa-user"></i> Welcome {{ app.user.username }} !</li>
                         <li><a href="{{ path('app_logout') }}" class="text-color">Log out <i class="fas fa-sign-out-alt"></i>
                             </a></li>
                     {% else %}
@@ -50,16 +48,14 @@
         <div class="collapse text-center navbar-collapse" id="navbarsid">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                {% if app.user %}
                 <li class="nav-item"><a class="nav-link" href="{{ path('trick_new') }}">Publish</a></li>
-                {% endif %}
                 <li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">Contact</a></li>
             </ul>
             <div class="my-md-0 ml-lg-4 mt-4 mt-lg-0 ml-auto text-lg-right mb-3 mb-lg-0">
                 <ul class="navbar-nav mx-auto">
 
                     {% if app.user %}
-                        <li class="text-white text-capitalize">Welcome {{ app.user.username }} !</li>
+                        <li class="text-white text-capitalize"><i class="fas fa-user"></i> Welcome {{ app.user.username }} !</li>
                         <li><a href="{{ path('app_logout') }}" class="text-color"> <i class="fas fa-sign-out-alt"></i></a></li>
                     {% else %}
                         <li><a href="{{ path('sign-up') }}" class="text-color">Sign up</a></li>
@@ -123,14 +119,16 @@
                                                     class="text-white">Project #6 Openclassrooms</a></span>
                         <p>Expand SnowTricks community site with Symfony.
                         </p>
+                        <p><a href="https://codeclimate.com/github/Vincent-gv/snowtricks/maintainability" target="_blank"><img src="https://api.codeclimate.com/v1/badges/d5b1dbf3c70c506e9c8e/maintainability"/></a></p>
+                        <p><a href="https://www.codacy.com/manual/Vincent-gv/snowtricks?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vincent-gv/snowtricks&amp;utm_campaign=Badge_Grade" target="_blank"><img src="https://app.codacy.com/project/badge/Grade/64f0a78f60c247bbab2fb142aad72cfd"/></a></p>
                     </div>
                 </div>
             </div>
             <div class="row align-items-center mt-5">
                 <div class="col-lg-4">
                     <p class="mt-3 font-weight-bold">
-                        <i class="fas fa-snowboarding text-color"></i><span class="text-color"> SnowTricks ©
-                        <script>document.write(new Date().getFullYear());</script></span>
+                        <i class="fas fa-snowboarding"></i> SnowTricks ©
+                        <script>document.write(new Date().getFullYear());</script>
                     </p>
                 </div>
                 <div class="col-lg-6 ml-auto text-right">
