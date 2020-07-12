@@ -97,13 +97,17 @@
                     <div class="footer-widget">
                         <h4 class="mb-4 text-white letter-spacing text-uppercase">Quick Links</h4>
                         <ul class="list-unstyled footer-menu lh-40 mb-0">
-                            <li><a href="/"><i class="fas fa-angle-double-right"></i> SnowTricks</a></li>
-                            <li><a href="{{ path('sign-up') }}"><i class="fas fa-angle-double-right"></i> Joins
-                                    us</a></li>
-                            <li><a href="{{ path('sign-in') }}"><i class="fas fa-angle-double-right"></i> Sign
-                                    in</a></li>
                             <li><a href="{{ path('contact') }}"><i class="fas fa-angle-double-right"></i> Contact us</a>
                             </li>
+                            <li><a href="/"><i class="fas fa-angle-double-right"></i> SnowTricks</a></li>
+                            {% if app.user %}
+                                <li><a href="{{ path('app_logout') }}" class="text-color"><i class="fas fa-sign-out-alt"></i> Log out
+                            {% else %}
+                                <li><a href="{{ path('sign-up') }}"><i class="fas fa-angle-double-right"></i> Joins
+                                        us</a></li>
+                                <li><a href="{{ path('sign-in') }}"><i class="fas fa-angle-double-right"></i> Sign
+                                        in</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>

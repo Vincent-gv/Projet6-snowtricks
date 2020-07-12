@@ -27,7 +27,7 @@ class Trick1Type extends AbstractType
             ->add('user', EntityType::class, [
                 'placeholder' => 'Choose a user',
                 'class' => User::class,
-                'choice_label' => 'name'
+                'choice_label' => 'username'
             ])
             ->add('video', FileType::class,
                 array(
