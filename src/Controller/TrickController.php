@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Trick;
+use App\Form\CommentType;
 use App\Form\Trick1Type;
 use App\Repository\CategoryRepository;
 use App\Repository\TrickRepository;
@@ -13,18 +15,33 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class TrickController extends AbstractController
 {
     /**
      * @Route("/", name="home", methods={"GET"})
      * @param TrickRepository $trickRepository
+     * @param Request $request
      * @return Response
      */
-    public function index(TrickRepository $trickRepository): Response
+    public function index(TrickRepository $trickRepository, Request $request): Response
     {
+        $totalTricks = $trickRepository->totalTricks();
+        $page = $request->query->get('page');
+
+        if ($page < 1 || $page > $totalTricks) {
+            $page = 1;
+        }
+        $paginatedTricks = $trickRepository->paginate($page, $limit = 12);
+        $pagination = array(
+            'page' => $page,
+            'nbPages' => ceil(count($paginatedTricks) / $limit),
+            'routeName' => 'home',
+            'slug' => null,
+        );
+
         return $this->render('pages/home.html.twig', [
-            'tricks' => $trickRepository->findAll(),
+            'tricks' => $paginatedTricks,
+            'pagination' => $pagination
         ]);
     }
 
@@ -51,21 +68,38 @@ class TrickController extends AbstractController
 
         return $this->render('trick/new.html.twig', [
             'trick' => $trick,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ]);
     }
 
     /**
      * @Route("/{slug}", name="trick_show", methods={"GET"})
+     * @param Request $request
      * @param TrickRepository $trickRepository
      * @param string $slug
      * @return Response
      */
-    public function show(TrickRepository $trickRepository, string $slug): Response
+    public function show(Request $request, TrickRepository $trickRepository, string $slug): Response
     {
         $trick = $trickRepository->findOneBy(['slug' => $slug]);
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setCreatedAt(new DateTime())
+                ->setTrick($trick);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+            $this->addFlash('success', 'Comment was successfully published !');
+
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render('trick/show.html.twig', [
             'trick' => $trick,
+//            'form' => $form->createView()
         ]);
     }
 
@@ -89,7 +123,7 @@ class TrickController extends AbstractController
 
         return $this->render('trick/edit.html.twig', [
             'trick' => $trick,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ]);
     }
 
@@ -101,7 +135,7 @@ class TrickController extends AbstractController
      */
     public function delete(Request $request, Trick $trick): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$trick->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $trick->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($trick);
             $entityManager->flush();
@@ -125,7 +159,7 @@ class TrickController extends AbstractController
 
         return $this->render('trick/category.html.twig', [
             'tricks' => $trick,
-            'category' => $category,
+            'category' => $category
         ]);
     }
 
@@ -143,7 +177,7 @@ class TrickController extends AbstractController
 
         return $this->render('trick/user.html.twig', [
             'tricks' => $trick,
-            'user' => $user,
+            'user' => $user
         ]);
     }
 }
