@@ -18,6 +18,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class TrickController extends AbstractController
 {
     /**
+     * Limit posts per page for pagination
+     */
+    const limit = 12;
+
+    /**
      * @Route("/", name="home", methods={"GET"})
      * @param TrickRepository $trickRepository
      * @param Request $request
@@ -25,22 +30,17 @@ class TrickController extends AbstractController
      */
     public function index(TrickRepository $trickRepository, Request $request): Response
     {
-        $totalTricks = $trickRepository->totalTricks();
-        $page = $request->query->get('page');
+        $page = $request->query->get('page', 1);
+        $tricks = $trickRepository->findAllPaginated($page, self::limit);
 
-        if ($page < 1 || $page > $totalTricks) {
-            $page = 1;
-        }
-        $paginatedTricks = $trickRepository->paginate($page, $limit = 12);
         $pagination = array(
             'page' => $page,
-            'nbPages' => ceil(count($paginatedTricks) / $limit),
-            'routeName' => 'home',
-            'slug' => null,
+            'nbPages' => ceil(count($tricks) / self::limit),
+            'routeName' => 'home'
         );
 
         return $this->render('pages/home.html.twig', [
-            'tricks' => $paginatedTricks,
+            'tricks' => $tricks,
             'pagination' => $pagination
         ]);
     }

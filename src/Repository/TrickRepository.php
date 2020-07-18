@@ -4,10 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Trick;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
-use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Trick|null find($id, $lockMode = null, $lockVersion = null)
@@ -23,14 +21,15 @@ class TrickRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $page
-     * @param $limit
+     * @param int $page
+     * @param int $limit
      * @return Paginator
      */
-    public function paginate(int $page, int $limit){
+    public function findAllPaginated(int $page, int $limit): Paginator
+    {
         if (!is_numeric($page)) {
             throw new \InvalidArgumentException(
-                'Incorrect page value'
+                'Incorrect page number'
             );
         }
         if (!is_numeric($limit)) {
@@ -45,22 +44,5 @@ class TrickRepository extends ServiceEntityRepository
             ->setMaxResults($limit);
 
         return new Paginator($query);
-    }
-
-    /**
-     * @return integer - Number of tricks
-     */
-    public function totalTricks() {
-        //  Query how many rows are there in the Trick table
-        try {
-            $query = $this->createQueryBuilder('t')
-                ->select('count(t.id)')
-                ->getQuery()
-                ->getSingleScalarResult();
-        } catch (NoResultException $e) {
-        } catch (NonUniqueResultException $e) {
-        }
-
-        return $query;
     }
 }
