@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Trick;
 use App\Form\CommentType;
-use App\Form\Trick1Type;
+use App\Form\TrickType;
 use App\Repository\CategoryRepository;
 use App\Repository\TrickRepository;
 use App\Repository\UserRepository;
@@ -53,7 +53,7 @@ class TrickController extends AbstractController
     public function new(Request $request): Response
     {
         $trick = new Trick();
-        $form = $this->createForm(Trick1Type::class, $trick);
+        $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -111,7 +111,7 @@ class TrickController extends AbstractController
      */
     public function edit(Request $request, Trick $trick): Response
     {
-        $form = $this->createForm(Trick1Type::class, $trick);
+        $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
