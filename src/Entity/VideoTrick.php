@@ -27,11 +27,6 @@ class VideoTrick
      */
     private $trick;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $platform;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -54,21 +49,14 @@ class VideoTrick
         return $this->trick;
     }
 
+    /**
+     * @param Trick|null $trick
+     * @return VideoTrick
+     * @deprecated Should use Trick::addIVideo()
+     */
     public function setTrick(?Trick $trick): self
     {
         $this->trick = $trick;
-
-        return $this;
-    }
-
-    public function getPlatform(): ?int
-    {
-        return $this->platform;
-    }
-
-    public function setPlatform(int $platform): self
-    {
-        $this->platform = $platform;
 
         return $this;
     }

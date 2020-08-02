@@ -1,7 +1,7 @@
 {{ form_start(form) }}
 <div class="row">
 </div>
-<div id="contact-form">
+<div id="trick-form">
     <div class="form-row">
         <span class="text-color">
             {{ form_errors(form.title) }}
@@ -26,13 +26,12 @@
             </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
-            <h4 class="font-weight-light"><i class="fab fa-youtube"></i> Add a Video</h4>
+            <h4 class="font-weight-light"><i class="fab fa-youtube"></i> Add Videos</h4>
         </div>
     </div>
     <div id="add-video" class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
             {% if trick.videos %}
-                <p>Videos currently attached to this trick:</p>
                 <div class="d-flex flex-wrap justify-content-center">
                     {% for video in trick.videos %}
                         {% if video.VideoId|length < 9 %}
@@ -70,18 +69,10 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-                <p>Add more videos:</p>
             {% endif %}
+                    {{ form_widget(form.videos) }}
+
             {# {{ form_widget(form.video, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Enter the video ID'}}) }} #}
-        </div>
-    </div>
-    <div id="add-video-child"></div>
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 mt-1">
-            <button class="btn-round text-sm" onclick="moreVideo()" type="button"><i
-                        class="fas fa-plus"></i> Add
-                more embed videos
-            </button>
         </div>
     </div>
     <div class="form-row">

@@ -2,26 +2,22 @@
 
 namespace App\Form;
 
-use App\Entity\ImageTrick;
+use App\Entity\VideoTrick;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TrickImageType extends AbstractType
+class TrickVideoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', FileType::class, [
-                'label' => false,
-                'attr' => ['class' => ' input-upload']
-            ])
-            ->add('alt', TextType::class, [
+            ->add('videoId', TextType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Alternate text for image',
+                    'placeholder' => 'Video ID',
                     'class' => 'form-control'
                 ]]);
     }
@@ -29,7 +25,7 @@ class TrickImageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => ImageTrick::class,
+            'data_class' => VideoTrick::class,
         ]);
     }
 }

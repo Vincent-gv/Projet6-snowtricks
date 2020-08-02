@@ -8,7 +8,6 @@ use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -33,15 +32,15 @@ class TrickType extends AbstractType
             ->add('images', CollectionType::class, [
                 'entry_type' => TrickImageType::class,
                 'by_reference' => false,
-                'allow_add' => true
+                'allow_add' => true,
+                'allow_delete' => true
             ])
-//            ->add('video', FileType::class,
-//                array(
-//                    'data_class' => null,
-//                    'mapped' => false,
-//                    )
-//            )
-        ;
+            ->add('videos', CollectionType::class, [
+                'entry_type' => TrickVideoType::class,
+                'by_reference' => false,
+                'allow_add' => true,
+                'allow_delete' => true
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
