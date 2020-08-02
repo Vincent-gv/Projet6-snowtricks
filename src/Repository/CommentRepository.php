@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +20,31 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
-    // /**
-    //  * @return Comment[] Returns an array of Comment objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param $trick
+     * @param int $page
+     * @param int $limit
+     * @return Paginator
+     */
+    public function findAllPaginated($trick, int $page, int $limit): Paginator
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+        if (!is_numeric($page)) {
+            throw new \InvalidArgumentException(
+                'Incorrect page number'
+            );
+        }
+        if (!is_numeric($limit)) {
+            throw new \InvalidArgumentException(
+                'Incorrect limit value'
+            );
+        }
+        $query = $this->createQueryBuilder('c')
+            ->addOrderBy('c.id', 'DESC')
+            ->where('c.trick =' . $trick->getId())
             ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit);
 
-    /*
-    public function findOneBySomeField($value): ?Comment
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return new Paginator($query);
     }
-    */
 }

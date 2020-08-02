@@ -4,11 +4,12 @@ namespace App\Entity;
 
 use App\Repository\ImageTrickRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass=ImageTrickRepository::class)
  */
-class ImageTrick
+class ImageTrick implements IUploadable
 {
     /**
      * @ORM\Id()
@@ -22,6 +23,8 @@ class ImageTrick
      */
     private $filename;
 
+    private $file;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -29,7 +32,6 @@ class ImageTrick
 
     /**
      * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="images")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $trick;
 
@@ -37,6 +39,18 @@ class ImageTrick
     {
         return $this->id;
     }
+
+    public function __construct()
+    {
+        $this->trick = null;
+        $this->file = null;
+    }
+
+    public function getFullPath(): ?string
+    {
+        return $this->getPathDirectory() . '/' . $this->getFilename();
+    }
+
 
     public function getFilename(): ?string
     {
@@ -67,10 +81,37 @@ class ImageTrick
         return $this->trick;
     }
 
+    /**
+     * @param Trick|null $trick
+     * @return ImageTrick
+     * @deprecated Should use Trick::addImage()
+     */
     public function setTrick(?Trick $trick): self
     {
         $this->trick = $trick;
 
         return $this;
+    }
+
+    public function getFile(): ?UploadedFile
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param UploadedFile|null $file
+     * @return ImageTrick
+     * @deprecated Should use File::setCover()
+     */
+    public function setFile(?UploadedFile $file): self
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    public function getPathDirectory()
+    {
+        return "/upload/images";
     }
 }

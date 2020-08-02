@@ -9,7 +9,8 @@
             <div class="row">
                 <div class="col-md-8">
                     <span class="h6 d-inline-block mb-4 subhead text-uppercase">Trciks by user</span>
-                    <h1 class="text-uppercase text-white mb-5">{{ user.username }}<br><span class="text-color">Tricks</span>
+                    <h1 class="text-uppercase text-white mb-5">{{ user.username }}<br><span
+                                class="text-color">Tricks</span>
                     </h1>
                 </div>
             </div>
@@ -19,29 +20,34 @@
         <div class="container">
             <div class="row">
                 {% if tricks %}
-                {% for trick in tricks|reverse %}
-                <div class="col-lg-3 col-md-6">
-                    <div class="card border-0 rounded-0 p-0 mb-5 mb-lg-4 shadow-sm">
-                        <h6 class="card-label"><span class="category badge badge-dark">{{ trick.category.name }}</span></h6>
-                        {% if app.user %}
-                        <p class="btn-edit mb-2">
-                            <a href="{{ path('trick_edit', {'id': trick.id}) }}" title="edit"><i class="far fa-edit"></i></a>
-                        </p>
-                            {{ include('trick/_delete_form_btn.html.twig') }}
-                        {% endif %}
-                        {% if trick.images is defined %}
-                        {% for image in trick.images %}
-                            {% if loop.first %}
-                        <a href="{{ path('trick_show', {'slug': trick.slug}) }}"><img src="{{ asset('images/gallery/' ~ image.filename) }}" alt="" class="img-fluid"></a>
-                            {% endif %}
-                        {% endfor %}
-                        {% endif %}
-                        <div class="card-body">
-                                    <a href="{{ path('trick_show', {'slug': trick.slug}) }}"><h5 class="card-title text-black mb-0">{{ trick.title }}</h5></a>
+                    {% for trick in tricks|reverse %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card border-0 rounded-0 p-0 mb-5 mb-lg-4 shadow-sm">
+                                <h6 class="card-label"><span
+                                            class="category badge badge-dark">{{ trick.category.name }}</span></h6>
+                                {% if app.user %}
+                                    <p class="btn-edit mb-2">
+                                        <a href="{{ path('trick_edit', {'id': trick.id}) }}" title="edit"><i
+                                                    class="far fa-edit"></i></a>
+                                    </p>
+                                    {{ include('trick/_delete_form_btn.html.twig') }}
+                                {% endif %}
+                                {% if trick.images is defined %}
+                                    {% for image in trick.images %}
+                                        {% if loop.first %}
+                                            <a href="{{ path('trick_show', {'slug': trick.slug}) }}"><img
+                                                        src="{{ asset('upload/images/' ~ image.filename) }}" alt=""
+                                                        class="img-fluid"></a>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                <div class="card-body">
+                                    <a href="{{ path('trick_show', {'slug': trick.slug}) }}"><h5
+                                                class="card-title text-black mb-0">{{ trick.title }}</h5></a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                {% endfor %}
+                    {% endfor %}
                 {% endif %}
             </div>
         </div>

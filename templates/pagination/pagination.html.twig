@@ -7,7 +7,7 @@
             </li>
             {% for p in range(max(pagination.page-4, 1), min(pagination.page+4, pagination.nbPages)) %}
                 <li class="page-item {% if p == pagination.page %}active{% endif %}">
-                    <a class="page-link" href="{{ path(pagination.routeName, { 'page': p }) }}">
+                    <a class="page-link" href="{{ path(pagination.routeName, { 'page': p, 'slug': pagination.slug }) }}#anchor">
                         {{ p }} <span class="sr-only">(current)</span>
                     </a>
                 </li>

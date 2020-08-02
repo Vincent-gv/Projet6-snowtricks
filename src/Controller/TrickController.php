@@ -7,6 +7,7 @@ use App\Entity\Trick;
 use App\Form\CommentType;
 use App\Form\TrickType;
 use App\Repository\CategoryRepository;
+use App\Repository\CommentRepository;
 use App\Repository\TrickRepository;
 use App\Repository\UserRepository;
 use DateTime;
@@ -18,9 +19,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class TrickController extends AbstractController
 {
     /**
-     * Limit posts per page for pagination
+     * Limit posts for pagination
      */
-    const limit = 12;
+    const limitPost = 12;
+    const limitComment = 2;
 
     /**
      * @Route("/", name="home", methods={"GET"})
@@ -31,12 +33,13 @@ class TrickController extends AbstractController
     public function index(TrickRepository $trickRepository, Request $request): Response
     {
         $page = $request->query->get('page', 1);
-        $tricks = $trickRepository->findAllPaginated($page, self::limit);
+        $tricks = $trickRepository->findAllPaginated($page, self::limitPost);
 
         $pagination = array(
             'page' => $page,
-            'nbPages' => ceil(count($tricks) / self::limit),
-            'routeName' => 'home'
+            'nbPages' => ceil(count($tricks) / self::limitPost),
+            'routeName' => 'home',
+            'slug' => null
         );
 
         return $this->render('pages/home.html.twig', [
@@ -47,17 +50,21 @@ class TrickController extends AbstractController
 
     /**
      * @Route("publish/new-trick", name="trick_new", methods={"GET","POST"})
+     * @param TrickRepository $trickRepository
      * @param Request $request
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, TrickRepository $trickRepository): Response
     {
         $trick = new Trick();
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            dump($trick);
             $trick->setCreatedAt(new DateTime());
+//            $trick->setUser(25);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($trick);
             $entityManager->flush();
@@ -73,15 +80,26 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="trick_show", methods={"GET"})
+     * @Route("/{slug}", name="trick_show", methods={"GET","POST"})
      * @param Request $request
      * @param TrickRepository $trickRepository
+     * @param CommentRepository $commentRepository
      * @param string $slug
      * @return Response
      */
-    public function show(Request $request, TrickRepository $trickRepository, string $slug): Response
+    public function show(Request $request, TrickRepository $trickRepository, CommentRepository $commentRepository, string $slug): Response
     {
         $trick = $trickRepository->findOneBy(['slug' => $slug]);
+
+        $page = $request->query->get('page', 1);
+        $comments = $commentRepository->findAllPaginated($trick, $page, self::limitComment);
+
+        $pagination = array(
+            'page' => $page,
+            'nbPages' => ceil(count($comments) / self::limitComment),
+            'routeName' => 'trick_show',
+            'slug' => $slug
+        );
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
@@ -89,17 +107,22 @@ class TrickController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setCreatedAt(new DateTime())
                 ->setTrick($trick);
+            $comment->setUser();
+
+            dump($comment);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
             $this->addFlash('success', 'Comment was successfully published !');
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('trick_show');
         }
 
         return $this->render('trick/show.html.twig', [
             'trick' => $trick,
-//            'form' => $form->createView()
+            'comments' => $comments,
+            'pagination' => $pagination,
+            'form' => $form->createView()
         ]);
     }
 

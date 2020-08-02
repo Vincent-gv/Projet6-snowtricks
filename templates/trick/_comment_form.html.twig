@@ -1,9 +1,12 @@
 {{ form_start(form) }}
 <form action="#" class="text-left">
     <div class="form-group text-center">
-        <label for="msg"></label><textarea name="msg" id="msg" cols="30" rows="6" class="form-control"
-                                           placeholder="Your Comment"></textarea>
-        <a href="#" class="btn btn-main mt-4">Add Comment</a>
+        {{ form_errors(form.comment) }}
+        {{ form_widget(form.comment, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Your Comment','rows': '3'}}) }}
+        {{ form_row(form._token) }}
+        <div class="text-center mt-4">
+            <button class="btn btn-main" type="submit">{{ button_label|default('Add Comment') }}</button>
+        </div>
     </div>
 </form>
 {{ form_widget(form) }}

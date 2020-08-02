@@ -17,7 +17,7 @@
 {% for image in trick.images %}
 {% if loop.first %}
 <section class="heading"
-         style="background: url({{ asset('images/gallery/' ~ image.filename) }}) no-repeat 0 30%;background-size: cover;">
+         style="background: url({{ asset('upload/images/' ~ image.filename) }}) no-repeat 0 30%;background-size: cover;">
     {% endif %}
     {% endfor %}
     {% else %}
@@ -74,9 +74,9 @@
                     {% if trick.images %}
                         {% for image in trick.images %}
                             <li>
-                                <a href="{{ asset('images/gallery/' ~ image.filename) }}"
+                                <a href="{{ asset('upload/images/' ~ image.filename) }}"
                                    onclick="$.zoombox.options.theme = 'simple';"
-                                   class="zoombox thumb"></a>
+                                   class="zoombox thumb" title="{{ image.alt }}"></a>
                             </li>
                         {% endfor %}
                     {% endif %}
@@ -113,7 +113,7 @@
                             <div class="divider mb-3"></div>
                             <h4 class="mb-2 font-secondary text-uppercase font-weight-normal">Leave a comment</h4>
                             {% if app.user %}
-{#                            {{ include('trick/_comment_form.html.twig') }}#}
+                            {{ include('trick/_comment_form.html.twig') }}
                             {% else %}
                     <a href="{{ path('sign-in') }}" class="btn btn-main my-3"><i class="fas fa-lock"></i> Sign in to comment
                         <i class="fas fa-angle-right"></i>
@@ -122,8 +122,8 @@
                         </div>
                         <div class="mt-2 mb-5 pb-4 border-top">
                             <h4 class="font-secondary text-uppercase font-weight-normal mt-4 mb-4">{{ trick.comments | length }} Comments</h4>
-                            {% if trick.comments %}
-                                {% for comment in trick.comments %}
+                            {% if comments %}
+                                {% for comment in comments %}
                                     <div class="media mt-3 mb-5">
                                         <img src="images/avatars/{{ comment.user.image }}" class="mr-4 img-fluid avatar"
                                              alt="{{ comment.user.username }}">
@@ -136,6 +136,10 @@
                                     </div>
                                 {% endfor %}
                             {% endif %}
+            <div class="row justify-content-center">
+                    <div class="mt-5 text-center"> {% include 'pagination/pagination.html.twig' %}
+                    </div>
+            </div>
                         </div>
                     </div>
                 </div>
