@@ -94,6 +94,7 @@ iframe {
 .form-control {
     font-size: 15px;
 }
+
 .form-group .errors ul {
     list-style: none;
     padding: 0;
@@ -101,6 +102,20 @@ iframe {
     color: #d71313;
     line-height: 21px;
     margin-bottom: 3px;
+}
+
+.input-upload {
+    position: relative;
+    bottom: 9px;
+}
+
+#add-picture .required {
+    font-size: 13px;
+}
+
+#add-picture .delete {
+    position: absolute;
+    right: 0;
 }
 
 .btn {
@@ -527,6 +542,7 @@ a:hover, a:focus {
 .card img {
     opacity: 1;
     transition: .2s ease-in-out;
+    width: 100%;
 }
 
 .card:hover img {
@@ -1059,7 +1075,7 @@ a:hover, a:focus {
     }
 }
 
-@media only screen and (max-width: 1093px) {
+@media (max-width: 1093px) {
 
     #thumbnail-slider {
         padding: 0 46px;
@@ -1090,5 +1106,23 @@ a:hover, a:focus {
         bottom: 0;
         right: 0;
         font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 991px) and (min-width: 769px) {
+    .card img {
+        height: 225px;
+    }
+}
+
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+    .card img {
+        height: 137px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card img {
+        height: 175px;
     }
 }

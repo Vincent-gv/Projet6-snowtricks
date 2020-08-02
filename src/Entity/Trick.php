@@ -52,9 +52,10 @@ class Trick
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=ImageTrick::class, mappedBy="trick", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=ImageTrick::class, mappedBy="trick", cascade={"persist", "remove"})
      */
-    private $images;
+    // todo change to private
+    public $images;
 
     /**
      * @ORM\OneToMany(targetEntity=VideoTrick::class, mappedBy="trick")
