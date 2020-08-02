@@ -480,6 +480,7 @@ a:hover, a:focus {
 #menu {
     position: absolute;
     width: 300px;
+    height: 2000px;
     margin: -100px 0 0 -50px;
     padding: 125px 50px 50px 50px;
     background: #202331;
@@ -1050,7 +1051,7 @@ a:hover, a:focus {
 
 @media (max-width: 480px) {
     .heading h1 {
-        font-size: 40px;
+        font-size: 51px;
         line-height: 48px;
     }
 

@@ -21,7 +21,7 @@ class TrickImageType extends AbstractType
             ->add('alt', TextType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Alternate text image',
+                    'placeholder' => 'Alternate text for image',
                     'class' => 'form-control'
                 ]]);
     }
