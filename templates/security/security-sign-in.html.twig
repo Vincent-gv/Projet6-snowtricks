@@ -20,7 +20,7 @@
     </section>
     <!-- Page Top section End -->
     <!-- Sign In section Start -->
-    <section class="contact-form section">
+    <section class="sign-form section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
@@ -34,7 +34,7 @@
 
             <div class="row justify-content-center pb-5">
                 <div class="col-lg-4 text-center">
-                    <form id="contact-form" method="post">
+                    <form id="sign-form" method="post">
                         {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}

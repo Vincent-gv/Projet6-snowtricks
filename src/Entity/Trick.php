@@ -54,11 +54,10 @@ class Trick
     /**
      * @ORM\OneToMany(targetEntity=ImageTrick::class, mappedBy="trick", cascade={"persist", "remove"})
      */
-    // todo change to private
-    public $images;
+    private $images;
 
     /**
-     * @ORM\OneToMany(targetEntity=VideoTrick::class, mappedBy="trick")
+     * @ORM\OneToMany(targetEntity=VideoTrick::class, mappedBy="trick", cascade={"persist", "remove"})
      */
     private $videos;
 

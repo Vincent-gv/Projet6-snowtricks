@@ -24,9 +24,7 @@
         <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-chevron-circle-up"></i></button>
         <nav role="navigation" id="navToggle">
             <div id="menuToggle" class="hidden-md-up">
-                <label>
                     <input type="checkbox"/>
-                </label>
                 <span></span>
                 <span></span>
                 <span></span>
@@ -35,9 +33,7 @@
                     <li><a href="{{ path('trick_new') }}" class="text-white">Publish</a></li>
                     <li><a href="{{ path('contact') }}" class="text-white">Contact</a></li>
                     {% if app.user %}
-                        <li><i class="fas fa-user"></i> Welcome {{ app.user.username }} !</li>
-                        <li><a href="{{ path('app_logout') }}" class="text-color">Log out <i class="fas fa-sign-out-alt"></i>
-                            </a></li>
+                        <li><a href="{{ path('app_logout') }}" class="text-color">Log out</a></li>
                     {% else %}
                         <li><a href="{{ path('sign-up') }}" class="text-color">Sign up</a></li>
                         <li><a href="{{ path('sign-in') }}" class="text-color">Sign in</a></li>
@@ -55,7 +51,7 @@
                 <ul class="navbar-nav mx-auto">
 
                     {% if app.user %}
-                        <li class="text-white text-capitalize"><i class="fas fa-user"></i> Welcome {{ app.user.username }} !</li>
+                        <li class="text-white text-capitalize"><i class="fas fa-user mr-2"></i> {{ app.user.username }}</li>
                         <li><a href="{{ path('app_logout') }}" class="text-color"> <i class="fas fa-sign-out-alt"></i></a></li>
                     {% else %}
                         <li><a href="{{ path('sign-up') }}" class="text-color">Sign up</a></li>
@@ -153,7 +149,7 @@
 </div>
 <!-- Javascripts -->
 <script src="{{ absolute_url(asset('js/jquery.js')) }}"></script>
-<script src="{{ absolute_url(asset('js/bootstrap.min.js')) }}"></script>
+<script src="{{ absolute_url(asset('js/bootstrap.js')) }}"></script>
 {% block javascripts %}
 {% endblock %}
 <script src="{{ absolute_url(asset('js/script.js')) }}"></script>
