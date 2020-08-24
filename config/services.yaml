@@ -32,3 +32,4 @@ services:
     App\Listener\Doctrine\UploadListener:
       tags:
         - { name: 'doctrine.event_listener', event: 'prePersist' }
+        - { name: 'doctrine.event_listener', event: 'postRemove' }

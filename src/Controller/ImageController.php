@@ -13,7 +13,7 @@ class ImageController extends AbstractController
 {
 
     /**
-     * @Route("/{id}", name="image_delete", methods={"DELETE"})
+     * @Route("delete/{id}", name="image_delete", methods={"DELETE"})
      * @param Request $request
      * @param ImageTrick $imageTrick
      * @return Response

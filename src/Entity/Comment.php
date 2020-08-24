@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
@@ -19,6 +20,7 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
     private $comment;
 
@@ -34,7 +36,6 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $User;
 
@@ -72,6 +73,11 @@ class Comment
         return $this->trick;
     }
 
+    /**
+     * @param Trick|null $trick
+     * @return Comment
+     * @deprecated Should use Trick::addComment()
+     */
     public function setTrick(?Trick $trick): self
     {
         $this->trick = $trick;

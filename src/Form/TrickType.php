@@ -18,22 +18,24 @@ class TrickType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('slug')
             ->add('category', EntityType::class, [
                 'placeholder' => 'Choose a category',
                 'class' => Category::class,
                 'choice_label' => 'name'
             ])
-            ->add('user', EntityType::class, [
-                'placeholder' => 'Choose a user',
-                'class' => User::class,
-                'choice_label' => 'username'
-            ])
             ->add('images', CollectionType::class, [
                 'entry_type' => TrickImageType::class,
                 'by_reference' => false,
                 'allow_add' => true,
-                'allow_delete' => true
+                'allow_delete' => true,
+                'attr' => [
+                    'class' => 'collection',
+                ],
+                'entry_options' => [
+                    'attr' => [
+                        'class' => 'collection_element'
+                    ]
+                ]
             ])
             ->add('videos', CollectionType::class, [
                 'entry_type' => TrickVideoType::class,

@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=TrickRepository::class)
  * @UniqueEntity(fields="title", message= "This title already exist.")
+ * @UniqueEntity(fields="slug", message= "This slug already exist.")
  * @ORM\Table(indexes={@ORM\Index(name="slug_idx",columns={"slug"}, options={"length": 255})})
  */
 class Trick
@@ -62,7 +63,7 @@ class Trick
     private $videos;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="trick")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="trick", cascade={"persist", "remove"})
      */
     private $comments;
 

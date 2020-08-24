@@ -52,7 +52,7 @@ class VideoTrick
     /**
      * @param Trick|null $trick
      * @return VideoTrick
-     * @deprecated Should use Trick::addIVideo()
+     * @deprecated Should use Trick::addVideo()
      */
     public function setTrick(?Trick $trick): self
     {

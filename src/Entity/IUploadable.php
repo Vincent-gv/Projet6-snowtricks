@@ -13,4 +13,6 @@ interface IUploadable
     public function setFilename(string $filename);
 
     public function getFile(): ?UploadedFile;
+
+    public function getFilename(): ?string;
 }

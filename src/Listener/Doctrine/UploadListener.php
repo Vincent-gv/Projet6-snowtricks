@@ -28,4 +28,15 @@ class UploadListener
 
         $this->fileUploader->upload($entity);
     }
+
+    public function postRemove (LifecycleEventArgs $args) {
+        $entity = $args->getObject();
+
+        if (!($entity instanceof IUploadable)) {
+            return;
+        }
+
+        $this->fileUploader->remove($entity);
+
+    }
 }
