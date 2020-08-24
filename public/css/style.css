@@ -87,6 +87,10 @@ iframe {
     border: 0;
 }
 
+.alert {
+    line-height: 22px;
+}
+
 .custom-select {
     height: 50px;
 }
@@ -104,6 +108,18 @@ iframe {
     margin-bottom: 3px;
 }
 
+.form-row .alert-danger {
+    width: 100%;
+}
+
+.form-row .alert {
+    margin: 0 5px 1rem;
+}
+
+.form-row .alert ul {
+    margin-bottom: 0;
+}
+
 input[id*="trick_images_generated"] {
     margin-bottom: 8px;
 }
@@ -112,8 +128,23 @@ input[id*="trick_images_generated"] {
     font-size: 13px;
 }
 
+.input-upload {
+    font-size: 12px;
+    color: #666666;
+    margin-bottom: 8px;
+}
+
 #add-picture label, #add-video label {
     margin-bottom: 0;
+}
+
+#add-picture .delete, #add-video .delete {
+    background: #fff;
+    padding: 1px 0;
+    color: #797979;
+}
+#add-picture .delete:hover, #add-video .delete:hover {
+    color: #454545;
 }
 
 #add-video .delete {
@@ -126,14 +157,14 @@ input[id*="trick_images_generated"] {
     top: -16px;
 }
 
-#add-picture .add-more {
+.add-more {
+    margin-top: -46px;
+    display: block;
     position: relative;
-    top: 1px;
 }
 
-#add-video .add-more {
-    position: relative;
-    top: 10px;
+#add-picture .add-more:hover ,#add-video .add-more:hover {
+    background: #e6e6e6;
 }
 
 .btn {
@@ -1061,6 +1092,10 @@ a:hover, a:focus {
     text-decoration: none;
 }
 
+#slug {
+    margin-top: -10px;
+}
+
 /*=== MEDIA QUERY ===*/
 @media (max-width: 400px) {
     .navbar-nav li {
@@ -1095,6 +1130,13 @@ a:hover, a:focus {
     }
 }
 
+@media (max-width: 991px) {
+
+    #navToggle {
+        display: block;
+    }
+}
+
 @media (max-width: 1093px) {
 
     #thumbnail-slider {
@@ -1116,10 +1158,6 @@ a:hover, a:focus {
 
     .navbar-brand {
         margin: auto;
-    }
-
-    #navToggle {
-        display: block;
     }
 
     #myBtn {

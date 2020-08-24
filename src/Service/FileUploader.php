@@ -26,10 +26,15 @@ class FileUploader
         try {
             $file->move($this->publicPath . $uploadable->getPathDirectory(), $fileName);
         } catch (FileException $e) {
-            //TODO
+
             die($e);
         }
 
         $uploadable->setFilename($fileName);
+    }
+
+    public function remove (IUploadable $uploadable)
+    {
+        unlink($this->publicPath.'/'.$uploadable->getPathDirectory().'/'.$uploadable->getFilename());
     }
 }

@@ -56,15 +56,15 @@ class TrickController extends AbstractController
      */
     public function new(Request $request, TrickRepository $trickRepository): Response
     {
+
+        $user = $this->getUser();
         $trick = new Trick();
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            dump($trick);
             $trick->setCreatedAt(new DateTime());
-//            $trick->setUser(25);
+            $trick->setUser($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($trick);
             $entityManager->flush();
@@ -100,22 +100,24 @@ class TrickController extends AbstractController
             'routeName' => 'trick_show',
             'slug' => $slug
         );
+        $user = $this->getUser();
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setCreatedAt(new DateTime())
+            $comment->setCreatedAt(new DateTime());
+            $comment->setUser($user)
                 ->setTrick($trick);
-            $comment->setUser();
-
             dump($comment);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
             $this->addFlash('success', 'Comment was successfully published !');
 
-            return $this->redirectToRoute('trick_show');
+            return $this->redirectToRoute('trick_show', [
+                'slug' => $trick->getSlug()
+            ]);
         }
 
         return $this->render('trick/show.html.twig', [

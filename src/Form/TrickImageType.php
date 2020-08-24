@@ -16,7 +16,9 @@ class TrickImageType extends AbstractType
         $builder
             ->add('file', FileType::class, [
                 'label' => false,
-                'attr' => ['class' => ' input-upload']
+                'attr' => [
+                    'class' => ' input-upload',
+                    'block_name' => 'custom_name']
             ])
             ->add('alt', TextType::class, [
                 'label' => false,

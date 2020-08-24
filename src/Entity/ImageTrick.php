@@ -101,7 +101,7 @@ class ImageTrick implements IUploadable
     /**
      * @param UploadedFile|null $file
      * @return ImageTrick
-     * @deprecated Should use File::setCover()
+     * @deprecated Should use File::addImage()
      */
     public function setFile(?UploadedFile $file): self
     {
