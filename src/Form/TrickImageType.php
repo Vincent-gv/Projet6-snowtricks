@@ -21,7 +21,7 @@ class TrickImageType extends AbstractType
                     'block_name' => 'custom_name']
             ])
             ->add('alt', TextType::class, [
-                'label' => false,
+                'label' => 'Alt:',
                 'attr' => [
                     'placeholder' => 'Alternate text for image',
                     'class' => 'form-control'
