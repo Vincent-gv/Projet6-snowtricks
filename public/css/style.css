@@ -147,24 +147,33 @@ input[id*="trick_images_generated"] {
     color: #454545;
 }
 
-#add-video .delete {
-    position: relative;
-    top: -8px;
+#add-video .form-group, #trick_images .form-group {
+    margin-bottom: 0;
 }
 
 #add-picture .delete {
     position: relative;
-    top: -16px;
+    top: -5px;
 }
 
 .add-more {
-    margin-top: -46px;
+    margin-top: -20px;
     display: block;
     position: relative;
 }
 
+#trick_videos .add-more {
+    margin-top: -15px;
+}
+
 #add-picture .add-more:hover ,#add-video .add-more:hover {
     background: #e6e6e6;
+}
+
+#trick_images .preview {
+    max-width: 242px;
+    position: relative;
+    top: -70px;
 }
 
 .btn {
