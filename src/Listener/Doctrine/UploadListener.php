@@ -22,7 +22,7 @@ class UploadListener
     {
         $entity = $args->getObject();
 
-        if (!($entity instanceof IUploadable)) {
+        if (!($entity instanceof IUploadable) || !$entity->getFile()) {
             return;
         }
 
