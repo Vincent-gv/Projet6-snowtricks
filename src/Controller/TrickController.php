@@ -21,7 +21,7 @@ class TrickController extends AbstractController
     /**
      * Limit posts for pagination
      */
-    const limitPost = 12;
+    const limitPost = 8;
     const limitComment = 2;
 
     /**
