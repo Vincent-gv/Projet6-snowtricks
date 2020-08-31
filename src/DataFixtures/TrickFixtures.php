@@ -75,8 +75,8 @@ class TrickFixtures extends Fixture
 
         $trick = new Trick();
         $trick->setTitle('Double Backflip')
-            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam arcu velit, posuere non rhoncus at, fermentum non sem. Duis egestas luctus massa sed ullamcorper. Phasellus id lorem id turpis lacinia dictum. Vestibulum in iaculis urna. Nullam quis fringilla sapien. Fusce id nibh malesuada tortor pretium tincidunt non id ante. Aenean facilisis sodales velit non consectetur. Quisque vel facilisis dui.')
-            ->setSlug('trick1')
+            ->setContent('Many variations of flips exist, with usage depending on the particular type of activity. In gymnastics, for example, flips conform to a small number of specific, rigorously defined forms and movements. In Snowboard, however, there are seemingly endless variations of flips.')
+            ->setSlug('double-backflip')
             ->setUser($user)
             ->setCategory($category)
             ->setCreatedAt(new \DateTime())
@@ -84,9 +84,9 @@ class TrickFixtures extends Fixture
         $this->addReference(self::TRICK_1, $trick);
 
         $trick2 = new Trick();
-        $trick2->setTitle('Switch-stance and fakie')
-            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam arcu velit, posuere non rhoncus at, fermentum non sem. Duis egestas luctus massa sed ullamcorper. Phasellus id lorem id turpis lacinia dictum. Vestibulum in iaculis urna. Nullam quis fringilla sapien. Fusce id nibh malesuada tortor pretium tincidunt non id ante. Aenean facilisis sodales velit non consectetur. Quisque vel facilisis dui.')
-            ->setSlug('trick2')
+        $trick2->setTitle('Taipan air')
+            ->setContent('The back hand grabs the toe edge just in front of the rear foot. However, the arm must go around the outside of your rear knee. The board is then pulled behind the rider (tweaked). The name Taipan is a portmanteau of tail/Japan air.')
+            ->setSlug('taipan-air')
             ->setUser($user3)
             ->setCategory($category2)
             ->setCreatedAt(new \DateTime())
@@ -94,9 +94,9 @@ class TrickFixtures extends Fixture
         $this->addReference(self::TRICK_2, $trick2);
 
         $trick3 = new Trick();
-        $trick3->setTitle('Goofy stance rider ')
-            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam arcu velit, posuere non rhoncus at, fermentum non sem. Duis egestas luctus massa sed ullamcorper. Phasellus id lorem id turpis lacinia dictum. Vestibulum in iaculis urna. Nullam quis fringilla sapien. Fusce id nibh malesuada tortor pretium tincidunt non id ante. Aenean facilisis sodales velit non consectetur. Quisque vel facilisis dui.')
-            ->setSlug('trick3')
+        $trick3->setTitle('Goofy stance')
+            ->setContent('Fakie is riding backwards with the tail facing in the direction of travel. When used in conjunction with a trick name, like "fakie ollie", it means that the trick was performed as it would normally be done with the exception of riding backwards. Not to be confused with "switch" or switchstance which is literally "switching" ones stance (from either regular or goofy to the opposite) with the nose pointing in the direction of travel.')
+            ->setSlug('goofy-stance')
             ->setUser($user3)
             ->setCategory($category3)
             ->setCreatedAt(new \DateTime())
@@ -104,9 +104,10 @@ class TrickFixtures extends Fixture
         $this->addReference(self::TRICK_3, $trick3);
 
         $trick4 = new Trick();
-        $trick4->setTitle('The Snowboarder\'s natural stance ')
-            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam arcu velit, posuere non rhoncus at, fermentum non sem. Duis egestas luctus massa sed ullamcorper. Phasellus id lorem id turpis lacinia dictum. Vestibulum in iaculis urna. Nullam quis fringilla sapien. Fusce id nibh malesuada tortor pretium tincidunt non id ante. Aenean facilisis sodales velit non consectetur. Quisque vel facilisis dui.')
-            ->setSlug('trick4')
+        $trick4->setTitle('Rocket Air')
+            ->setContent('The front hand grabs the toe edge in front of the front foot (mute) and the back leg is boned while the board points perpendicular to the ground.
+             The identifier fakie has its origin in skateboarding, a discipline where the feet are not attached to the board, but where the skateboarder\'s natural stance includes positioning the trailing foot on the kicked tail of the skateboard. On a snowboard, fakie refers to an instance where the snowboard is traveling backward, but their feet remain in the same position on the snowboard as their natural stance.')
+            ->setSlug('rocket-air')
             ->setUser($user)
             ->setCategory($category4)
             ->setCreatedAt(new \DateTime())
@@ -114,9 +115,10 @@ class TrickFixtures extends Fixture
         $this->addReference(self::TRICK_4, $trick4);
 
         $trick5 = new Trick();
-        $trick5->setTitle('Rides with left foot forward')
-            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam arcu velit, posuere non rhoncus at, fermentum non sem. Duis egestas luctus massa sed ullamcorper. Phasellus id lorem id turpis lacinia dictum. Vestibulum in iaculis urna. Nullam quis fringilla sapien. Fusce id nibh malesuada tortor pretium tincidunt non id ante. Aenean facilisis sodales velit non consectetur. Quisque vel facilisis dui.')
-            ->setSlug('trick5')
+        $trick5->setTitle('Swiss cheese air')
+            ->setContent('The rear hand reaches between the legs and grabs the heel edge in front of the front foot while the back leg is boned. 
+            A regular rider approaching a rail from the left side of the rail would be considered frontside because the "front side" of their body is facing the rail. A regular rider approaching a rail from the right side of the rail would be considered backside because the "back side" of their body is facing the rail.')
+            ->setSlug('regular-positions')
             ->setUser($user2)
             ->setCategory($category5)
             ->setCreatedAt(new \DateTime())
@@ -124,9 +126,9 @@ class TrickFixtures extends Fixture
         $this->addReference(self::TRICK_5, $trick5);
 
         $trick6 = new Trick();
-        $trick6->setTitle('Rides with right foot forward')
-            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam arcu velit, posuere non rhoncus at, fermentum non sem. Duis egestas luctus massa sed ullamcorper. Phasellus id lorem id turpis lacinia dictum. Vestibulum in iaculis urna. Nullam quis fringilla sapien. Fusce id nibh malesuada tortor pretium tincidunt non id ante. Aenean facilisis sodales velit non consectetur. Quisque vel facilisis dui.')
-            ->setSlug('trick6')
+        $trick6->setTitle('Nose Grab')
+            ->setContent('The front hand grabs the nose of the snowboard. More fun : doing a frontside spin onto a rail would rotate their body clockwise and then land on the rail. A regular rider doing a backside spin onto a rail would rotate their body counterclockwise and then land on the rail.')
+            ->setSlug('nose-grab')
             ->setUser($user2)
             ->setCategory($category6)
             ->setCreatedAt(new \DateTime())
@@ -134,9 +136,9 @@ class TrickFixtures extends Fixture
         $this->addReference(self::TRICK_6, $trick6);
 
         $trick7 = new Trick();
-        $trick7->setTitle('Frontside 540 for a regular rider')
-            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam arcu velit, posuere non rhoncus at, fermentum non sem. Duis egestas luctus massa sed ullamcorper. Phasellus id lorem id turpis lacinia dictum. Vestibulum in iaculis urna. Nullam quis fringilla sapien. Fusce id nibh malesuada tortor pretium tincidunt non id ante. Aenean facilisis sodales velit non consectetur. Quisque vel facilisis dui.')
-            ->setSlug('trick7')
+        $trick7->setTitle('Frontside 180')
+            ->setContent('A switch-frontside 540 would land a rider in the same switch position they took off from in the halfpipe, it was not referred to as a "Cab 540" because the rider did not take off switch, spin frontside, and land in their comfortable stance.  Several snowboarders have recently extended the limits of technical snowboarding by performing triple-cork variations, Torstein Horgmo being the first to land one in competition.')
+            ->setSlug('frontside-180')
             ->setUser($user3)
             ->setCategory($category)
             ->setCreatedAt(new \DateTime())
@@ -144,9 +146,9 @@ class TrickFixtures extends Fixture
         $this->addReference(self::TRICK_7, $trick7);
 
         $trick8 = new Trick();
-        $trick8->setTitle('Cab 540 for a goofy rider')
-            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam arcu velit, posuere non rhoncus at, fermentum non sem. Duis egestas luctus massa sed ullamcorper. Phasellus id lorem id turpis lacinia dictum. Vestibulum in iaculis urna. Nullam quis fringilla sapien. Fusce id nibh malesuada tortor pretium tincidunt non id ante. Aenean facilisis sodales velit non consectetur. Quisque vel facilisis dui.')
-            ->setSlug('trick8')
+        $trick8->setTitle('Frontside 540')
+            ->setContent('The basic frontside rodeo is all together a 540. It essentially falls into a grey area between an off axis frontside 540 and a frontside 180 with a back flip blended into it. An invert where the rider plants the front hand on the wall, rotated 540 degrees in a backside direction and lands riding forward. This refers to a rotation in which a snowboarder inverts or orients themselves sideways at two distinct times during an aerial rotation.')
+            ->setSlug('frontside-540')
             ->setUser($user)
             ->setCategory($category6)
             ->setCreatedAt(new \DateTime())
@@ -155,8 +157,8 @@ class TrickFixtures extends Fixture
 
         $trick9 = new Trick();
         $trick9->setTitle('Fakie ollie (Switch Nollie)')
-            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam arcu velit, posuere non rhoncus at, fermentum non sem. Duis egestas luctus massa sed ullamcorper. Phasellus id lorem id turpis lacinia dictum. Vestibulum in iaculis urna. Nullam quis fringilla sapien. Fusce id nibh malesuada tortor pretium tincidunt non id ante. Aenean facilisis sodales velit non consectetur. Quisque vel facilisis dui.')
-            ->setSlug('trick9')
+            ->setContent('While riding switch, the snowboarder springs off of their \'new nose\' and into the air. This resembles an ollie, but the snowboarder is riding in switch.  A spin attempted from a jump to a rail is the only time a spin can be referred to in a 90-degree increment, examples: 270 (between a 180 and 360-degree spin) or 450 (between a 360 and 540-degree spin). These spins can be frontside, backside, cab, or switch-backside just like any other spins. ')
+            ->setSlug('fakie-ollie')
             ->setUser($user2)
             ->setCategory($category2)
             ->setCreatedAt(new \DateTime())
@@ -165,8 +167,8 @@ class TrickFixtures extends Fixture
 
         $trick10 = new Trick();
         $trick10->setTitle('Switch ollie Trick')
-            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam arcu velit, posuere non rhoncus at, fermentum non sem. Duis egestas luctus massa sed ullamcorper. Phasellus id lorem id turpis lacinia dictum. Vestibulum in iaculis urna. Nullam quis fringilla sapien. Fusce id nibh malesuada tortor pretium tincidunt non id ante. Aenean facilisis sodales velit non consectetur. Quisque vel facilisis dui.')
-            ->setSlug('trick10')
+            ->setContent('Spins are corked or corkscrew when the axis of the spin allows for the snowboarder to be oriented sideways or upside-down in the air, typically without becoming completely inverted (though the head and shoulders should drop below the relative position of the board). A Double-Cork refers to a rotation in which a snowboarder inverts or orients themselves sideways at two distinct times during an aerial rotation.')
+            ->setSlug('switch-ollie-trick')
             ->setUser($user)
             ->setCategory($category3)
             ->setCreatedAt(new \DateTime())
@@ -174,9 +176,9 @@ class TrickFixtures extends Fixture
         $this->addReference(self::TRICK_10, $trick10);
 
         $trick11 = new Trick();
-        $trick11->setTitle('Nollie Trick')
-            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam arcu velit, posuere non rhoncus at, fermentum non sem. Duis egestas luctus massa sed ullamcorper. Phasellus id lorem id turpis lacinia dictum. Vestibulum in iaculis urna. Nullam quis fringilla sapien. Fusce id nibh malesuada tortor pretium tincidunt non id ante. Aenean facilisis sodales velit non consectetur. Quisque vel facilisis dui.')
-            ->setSlug('trick11')
+        $trick11->setTitle('Double-Cork')
+            ->setContent('David Benedek is the originator of the Double-Cork in the Half-pipe, but the Double-Cork is also a very common trick in Big-Air competitions. Shaun White is known for making this trick famous in the half-pipe. The front hand reaches across the body and grabs the tail while the front leg is boned. The snowboarders\'s arm resembles the sash of a three-point seatbelt, hence the name.')
+            ->setSlug('double-cork')
             ->setUser($user3)
             ->setCategory($category4)
             ->setCreatedAt(new \DateTime())
@@ -184,9 +186,9 @@ class TrickFixtures extends Fixture
         $this->addReference(self::TRICK_11, $trick11);
 
         $trick12 = new Trick();
-        $trick12->setTitle('Air-to-fakie')
-            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam arcu velit, posuere non rhoncus at, fermentum non sem. Duis egestas luctus massa sed ullamcorper. Phasellus id lorem id turpis lacinia dictum. Vestibulum in iaculis urna. Nullam quis fringilla sapien. Fusce id nibh malesuada tortor pretium tincidunt non id ante. Aenean facilisis sodales velit non consectetur. Quisque vel facilisis dui.')
-            ->setSlug('trick12')
+        $trick12->setTitle('Mule kick')
+            ->setContent('An early snowboarder adaptation of the skateboarders method air. Often called a Toyota air, after its similar posturing to the early 1980s Toyota "Oh What A Feeling" ad campaign featuring people jumping off the ground, performed by jumping into an aerial backbend with legs bending until nearly kicking yourself in the butt as with skiing\'s backscratcher air, both arms bent back high over the head and not grabbing the board. Still occasionally seen and wide regarded as terrible.')
+            ->setSlug('mule-kick')
             ->setUser($user2)
             ->setCategory($category5)
             ->setCreatedAt(new \DateTime())
