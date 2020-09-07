@@ -8,6 +8,7 @@ use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,7 +19,11 @@ class TrickType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('slug')
+            ->add('slug', TextType::class, [
+                'attr' => [
+                    'readonly' => 'readonly'
+                ]
+            ])
             ->add('category', EntityType::class, [
                 'placeholder' => 'Choose a category',
                 'class' => Category::class,
