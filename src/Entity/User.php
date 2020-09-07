@@ -34,7 +34,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="You must enter an email")
-     * @Assert\Length(min = 6, minMessage="Please enter a valid email", max="255")
+     * @Assert\Length(min = 3, minMessage="Please enter a valid email", max="255")
      */
     private $email;
 
@@ -45,7 +45,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="User")
      */
     private $Trick;
 
@@ -55,7 +55,7 @@ class User implements UserInterface
     private $comments;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity=UserImage::class, cascade={"persist", "remove"})
      */
     private $image;
 
@@ -168,12 +168,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage(): ?UserImage
     {
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage(?UserImage $image): self
     {
         $this->image = $image;
 

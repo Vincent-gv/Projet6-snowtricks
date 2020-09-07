@@ -20,7 +20,7 @@ function slugEvent(e) {
 }
 
 const $name = document.getElementById('trick_title');
-const $slug = document.getElementById('slug');
+const $slug = document.getElementById('trick_slug');
 
 $name.addEventListener('change', slugEvent);
 $name.addEventListener('keyup', slugEvent);

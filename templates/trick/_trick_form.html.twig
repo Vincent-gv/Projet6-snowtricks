@@ -21,7 +21,7 @@
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="form-group">
-                <label for="slug"><small>Slug</small></label><input class="w-100" type="text" id="slug" placeholder="{% if trick.slug %}{{ trick.slug }}{% endif %}" disabled>
+                {{ form_row(form.slug, {'label':false, 'attr': {'placeholder': 'Trick slug'}}) }}
             </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12">
