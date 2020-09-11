@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 subhead-link">
-                    <span class="h3 d-inline-block mb-4 subhead text-uppercase"><a href="{{ path('trick_category', {'categoryId': trick.category.id }) }}">{{ trick.category.name }}</a></span>
+                    <span class="h3 d-inline-block mb-4 subhead text-uppercase">{{ trick.category.name }}</span>
                     <h1 class="text-uppercase text-white mb-4">{{ trick.title }}
                     </h1>
                     <h4 class="text-white"><i class="far fa-edit"></i> Publish
@@ -104,9 +104,9 @@
                                     {{ trick.updatedAt ? trick.updatedAt|date('jS F Y') : '' }} at {{ trick.updatedAt ? trick.updatedAt|date('g:i a') : '' }}</li>
 
                     {% endif %}
-                                <li class="list-inline-item text-capitalize"><a href="{{ path('trick_user', {'userId': trick.user.id }) }}"><i
-                                            class="fas fa-user"></i> {{ trick.user.username }}</a></li>
-                                <li class="list-inline-item"><a href="{{ path('trick_category', {'categoryId': trick.category.id }) }}"><i class="fas fa-tag"></i> {{ trick.category.name }}</a></li>
+                                <li class="list-inline-item text-capitalize"><i
+                                            class="fas fa-user"></i> {{ trick.user.username }}</li>
+                                <li class="list-inline-item"><i class="fas fa-tag"></i> {{ trick.category.name }}</li>
                             </ul>
                         </div>
                         <div class="py-4 text-center comments">

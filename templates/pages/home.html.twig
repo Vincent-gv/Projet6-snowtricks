@@ -43,8 +43,7 @@
                     {% for trick in tricks %}
                         <div class="col-lg-3 col-md-6">
                             <div class="card border-0 rounded-0 p-0 mb-5 mb-lg-4 shadow-sm">
-                                <h6 class="card-label"><span class="badge badge-dark"><a
-                                                href="{{ path('trick_category', {'categoryId': trick.category.id }) }}">{{ trick.category.name }}</a></span>
+                                <h6 class="card-label"><span class="badge badge-dark">{{ trick.category.name }}</span>
                                 </h6>
                                 {% if app.user %}
                                     <p class="btn-edit mb-2">
