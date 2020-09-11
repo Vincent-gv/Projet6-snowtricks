@@ -27,6 +27,16 @@ class VideoTrick
      */
     private $trick;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $plateformId;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $plateformName;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -57,6 +67,30 @@ class VideoTrick
     public function setTrick(?Trick $trick): self
     {
         $this->trick = $trick;
+
+        return $this;
+    }
+
+    public function getPlateformId(): ?string
+    {
+        return $this->plateformId;
+    }
+
+    public function setPlateformId(string $plateformId): self
+    {
+        $this->plateformId = $plateformId;
+
+        return $this;
+    }
+
+    public function getPlateformName(): ?string
+    {
+        return $this->plateformName;
+    }
+
+    public function setPlateformName(string $plateformName): self
+    {
+        $this->plateformName = $plateformName;
 
         return $this;
     }
