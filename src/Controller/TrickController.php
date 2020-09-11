@@ -6,10 +6,8 @@ use App\Entity\Comment;
 use App\Entity\Trick;
 use App\Form\CommentType;
 use App\Form\TrickType;
-use App\Repository\CategoryRepository;
 use App\Repository\CommentRepository;
 use App\Repository\TrickRepository;
-use App\Repository\UserRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -140,7 +138,6 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-//            $trick->setSlug('test');
             $trick->setUpdatedAt(new DateTime());
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'Trick was successfully modified !');
@@ -169,41 +166,5 @@ class TrickController extends AbstractController
         }
 
         return $this->redirectToRoute('home');
-    }
-
-    /**
-     * @Route("/category/{categoryId}", name="trick_category", methods={"GET"})
-     * @param TrickRepository $trickRepository
-     * @param CategoryRepository $CategoryRepository
-     * @param string $categoryId
-     * @return Response
-     */
-    public function category(TrickRepository $trickRepository, CategoryRepository $CategoryRepository, string $categoryId): Response
-    {
-        $trick = $trickRepository->findBy(['category' => $categoryId]);
-        $category = $CategoryRepository->find(['id' => $categoryId]);
-
-        return $this->render('trick/category.html.twig', [
-            'tricks' => $trick,
-            'category' => $category
-        ]);
-    }
-
-    /**
-     * @Route("/user/{userId}", name="trick_user", methods={"GET"})
-     * @param TrickRepository $trickRepository
-     * @param UserRepository $UserRepository
-     * @param string $userId
-     * @return Response
-     */
-    public function user(TrickRepository $trickRepository, UserRepository $UserRepository, string $userId): Response
-    {
-        $trick = $trickRepository->findBy(['user' => $userId]);
-        $user = $UserRepository->find(['id' => $userId]);
-
-        return $this->render('trick/user.html.twig', [
-            'tricks' => $trick,
-            'user' => $user
-        ]);
     }
 }
