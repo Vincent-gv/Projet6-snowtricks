@@ -33,3 +33,9 @@ services:
       tags:
         - { name: 'doctrine.event_listener', event: 'prePersist' }
         - { name: 'doctrine.event_listener', event: 'postRemove' }
+
+    App\Listener\Doctrine\VideoTrickListener:
+      tags:
+        -   name: 'doctrine.orm.entity_listener'
+            event: 'prePersist'
+            entity: 'App\Entity\VideoTrick'

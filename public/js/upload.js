@@ -8,7 +8,7 @@ for (let $collectionElement of $collectionElements) {
     $deleteButton.className = 'btn-round mt-2 text-sm float-right delete';
     $deleteButton.addEventListener('click', function () {
         this.parentElement.remove();
-    }); 
+    });
 
     $collectionElement.parentElement.appendChild($deleteButton);
 }
@@ -27,7 +27,7 @@ function addInput($inputsDiv, prototype, label, index) {
         this.parentElement.remove();
     });
 
-    $input.querySelector('div').appendChild($deleteButton);
+    $input.querySelector('.form-group').appendChild($deleteButton);
 
     $inputsDiv.appendChild($input);
 }
@@ -47,7 +47,7 @@ for (const $collectionDiv of $collectionDivs) {
     const $addButton = document.createElement('button');
     $addButton.innerHTML = '<i class="fas fa-plus"></i> Add more';
     $addButton.setAttribute('type', 'button');
-    $addButton.className = 'btn-round mb-3 text-sm add-more';
+    $addButton.className = 'btn-round mb-3 text-sm add-more m-auto';
     $addButton.addEventListener('click', function () {
         addInput($inputsDiv, prototype, label, ++index);
     });

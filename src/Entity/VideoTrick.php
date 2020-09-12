@@ -17,10 +17,7 @@ class VideoTrick
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $videoId;
+    private $url;
 
     /**
      * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="videos")
@@ -30,26 +27,26 @@ class VideoTrick
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $plateformId;
+    private $platformId;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $plateformName;
+    private $platformName;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getVideoId(): ?string
+    public function getUrl(): ?string
     {
-        return $this->videoId;
+        return $this->url;
     }
 
-    public function setVideoId(string $videoId): self
+    public function setUrl(string $url): self
     {
-        $this->videoId = $videoId;
+        $this->url = $url;
 
         return $this;
     }
@@ -71,26 +68,26 @@ class VideoTrick
         return $this;
     }
 
-    public function getPlateformId(): ?string
+    public function getPlatformId(): ?string
     {
-        return $this->plateformId;
+        return $this->platformId;
     }
 
-    public function setPlateformId(string $plateformId): self
+    public function setPlatformId(string $platformId): self
     {
-        $this->plateformId = $plateformId;
+        $this->platformId = $platformId;
 
         return $this;
     }
 
-    public function getPlateformName(): ?string
+    public function getPlatformName(): ?string
     {
-        return $this->plateformName;
+        return $this->platformName;
     }
 
-    public function setPlateformName(string $plateformName): self
+    public function setPlatformName(string $platformName): self
     {
-        $this->plateformName = $plateformName;
+        $this->platformName = $platformName;
 
         return $this;
     }
