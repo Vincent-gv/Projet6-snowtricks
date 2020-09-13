@@ -1,9 +1,8 @@
 # Snowtricks
 
-Project #6 - Application Developer Student - PHP / Symfony
-Openclassrooms
+### Project #6 - Application Developer Student - PHP / Symfony Openclassrooms
 
-Expand SnowTricks community site with Symfony 4
+Expand a PHP SnowTricks community site with Symfony 4.
 
 ![screenshot](http://vincent-dev.com/img/screenshot2.jpg)
 
@@ -16,18 +15,18 @@ Expand SnowTricks community site with Symfony 4
 
 ### Installation
 
-* Clone the project on Github https://github.com/Vincent-gv/snowtricks and add it to the projects folder of your local apache server environment with the command:
+* Clone the project on Github https://github.com/Vincent-gv/snowtricks and add it to the projects folder of your local server environment with the command:
 `` ''
 git clone https://github.com/Vincent-gv/snowtricks.git
 `` ''
-* In the snowtricks\src\Config\folder, update the Parameters.php file with the credentials for connecting to your local database, your email for contact forms and your public and private keys for Google Captcha.
 * Run `` composer install '' at the root of the folder to install the dependencies.
-* Create a local database and import the snowtricks.sql file located at the root of the project
+* Create a local database and update environment variables in .env file.
+* Run Doctrine to load SQL tables and fixtures into the database.
 
 ## Developed with
 
-* ** Symfony 4.4.9 **
-* ** PHP 7.3.3 **
+* ** Symfony 4.4.13 **
+* ** PHP 7.4.7 **
 * ** HTML5 & CSS **
 * ** Mysql **
 * **Composer **
@@ -42,7 +41,5 @@ Online demo: http://snowtricks.vincent-dev.com/
 ## Project badges
 
 <a href="https://codeclimate.com/github/codeclimate/codeclimate/maintainability"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability" /></a>
-
-<a href="https://codeclimate.com/github/codeclimate/codeclimate/test_coverage"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage" /></a>
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cafec2004c2c439aaef161f8d81b9d0b)](https://app.codacy.com/manual/Vincent-gv/snowtricks?utm_source=github.com&utm_medium=referral&utm_content=Vincent-gv/snowtricks&utm_campaign=Badge_Grade_Dashboard)
