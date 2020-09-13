@@ -37,7 +37,12 @@ git clone https://github.com/Vincent-gv/snowtricks.git
 ** Vincent Gauchevertu ** - Openclassrooms student
 https://github.com/Vincent-gv/
 
-Online demo: https://snowtricks.vincent-dev.com/
+Online demo: http://snowtricks.vincent-dev.com/
 
-## Project badge
+## Project badges
+
+<a href="https://codeclimate.com/github/codeclimate/codeclimate/maintainability"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability" /></a>
+
+<a href="https://codeclimate.com/github/codeclimate/codeclimate/test_coverage"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage" /></a>
+
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cafec2004c2c439aaef161f8d81b9d0b)](https://app.codacy.com/manual/Vincent-gv/snowtricks?utm_source=github.com&utm_medium=referral&utm_content=Vincent-gv/snowtricks&utm_campaign=Badge_Grade_Dashboard)
