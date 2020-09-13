@@ -25,18 +25,19 @@
         <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-chevron-circle-up"></i></button>
         <nav role="navigation" id="navToggle">
             <div id="menuToggle" class="hidden-md-up">
-                    <input type="checkbox"/>
+                <input type="checkbox"/>
                 <span></span>
                 <span></span>
                 <span></span>
                 <ul id="menu">
                     <li><a href="/" class="text-white">Home</a></li>
                     <li><a href="{{ path('trick_new') }}" class="text-white">Publish</a></li>
-                    <li><a href="{{ path('contact') }}" class="text-white">Contact</a></li>
+                    {% if not app.user %}
+                        <li><a href="{{ path('contact') }}" class="text-white">Sign up</a></li>
+                    {% endif %}
                     {% if app.user %}
                         <li><a href="{{ path('app_logout') }}" class="text-color">Log out</a></li>
                     {% else %}
-                        <li><a href="{{ path('sign-up') }}" class="text-color">Sign up</a></li>
                         <li><a href="{{ path('sign-in') }}" class="text-color">Sign in</a></li>
                     {% endif %}
                 </ul>
@@ -46,17 +47,20 @@
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ path('trick_new') }}">Publish</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">Contact</a></li>
+                {% if not app.user %}
+                    <li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">Sign up</a></li>
+                {% endif %}
             </ul>
             <div class="my-md-0 ml-lg-4 mt-4 mt-lg-0 ml-auto text-lg-right mb-3 mb-lg-0">
                 <ul class="navbar-nav mx-auto">
-
                     {% if app.user %}
-                        <li class="text-white text-capitalize"><i class="fas fa-user mr-2"></i> {{ app.user.username }}</li>
-                        <li><a href="{{ path('app_logout') }}" class="text-color"> <i class="fas fa-sign-out-alt"></i></a></li>
+                        <li class="text-white text-capitalize"><i class="fas fa-user mr-2"></i> {{ app.user.username }}
+                        </li>
+                        <li><a href="{{ path('app_logout') }}" class="text-color"> <i
+                                        class="fas fa-sign-out-alt"></i></a></li>
                     {% else %}
-                        <li><a href="{{ path('sign-up') }}" class="text-color">Sign up</a></li>
-                        <li><a href="{{ path('sign-in') }}" class="text-color">Sign in</a></li>
+                        <li><a href="{{ path('sign-in') }}" class="text-color font-weight-bold">Sign in <i
+                                        class="fas fa-sign-in-alt"></i></a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -73,20 +77,20 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
                     <h2 class="text-white mb-4"><i class="fas fa-snowboarding"></i> SnowTricks</h2>
-
                     <p>Snowboarding Community to share Tricks.</p>
                     <p>Every SnowTricks can be modify or comment if you subscribe.</p>
+                    <p>Be a part of the snowboarding community.</p>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
                     <div class="footer-widget recent-blog">
-                        <h4 class="mb-4 text-white letter-spacing text-uppercase">Recents Posts</h4>
+                        <h4 class="mb-4 text-white letter-spacing text-uppercase">Join us!</h4>
                         <div>
-                            <a href="#" class="text-white">Claritas est etiam processus dynamicus</a>
-                            <p class="text-sm mt-2 text-white-50">30 february 2019</p>
-                        </div>
-                        <div class="mt-4">
-                            <a href="#" class="text-white">Claritas est etiam processus dynamicus</a>
-                            <p class="text-sm mt-2 text-white-50">30 february 2019</p>
+                            <p class="text-white">Here are some of the things you will be able to enjoy:</p>
+                            <ul class="list-unstyled footer-menu lh-40 mb-0 text-white">
+                                <li><a href="{{ path('sign-in') }}"><i class="fas fa-check"></i> Post a new trick</a></li>
+                                <li><a href="{{ path('sign-in') }}"><i class="fas fa-check"></i> Manage tricks</a></li>
+                                <li><a href="{{ path('sign-in') }}"><i class="fas fa-check"></i> Comment tricks</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -94,16 +98,16 @@
                     <div class="footer-widget">
                         <h4 class="mb-4 text-white letter-spacing text-uppercase">Quick Links</h4>
                         <ul class="list-unstyled footer-menu lh-40 mb-0">
-                            <li><a href="{{ path('contact') }}"><i class="fas fa-angle-double-right"></i> Contact us</a>
-                            </li>
                             <li><a href="/"><i class="fas fa-angle-double-right"></i> SnowTricks</a></li>
                             {% if app.user %}
-                                <li><a href="{{ path('app_logout') }}" class="text-color"><i class="fas fa-sign-out-alt"></i> Log out
+                                <li><a href="{{ path('app_logout') }}" class="text-color"><i
+                                    class="fas fa-sign-out-alt"></i> Log out
                             {% else %}
                                 <li><a href="{{ path('sign-up') }}"><i class="fas fa-angle-double-right"></i> Joins
                                         us</a></li>
                                 <li><a href="{{ path('sign-in') }}"><i class="fas fa-angle-double-right"></i> Sign
                                         in</a></li>
+                                <li><a href="{{ path('recover-password') }}"><i class="fas fa-angle-double-right"></i> Recover password</a></li>
                             {% endif %}
                         </ul>
                     </div>
@@ -116,8 +120,15 @@
                                                     class="text-white">Project #6 Openclassrooms</a></span>
                         <p>Expand SnowTricks community site with Symfony.
                         </p>
-                        <p><a href="https://codeclimate.com/github/Vincent-gv/snowtricks/maintainability" target="_blank"><img src="https://api.codeclimate.com/v1/badges/d5b1dbf3c70c506e9c8e/maintainability"/></a></p>
-                        <p><a href="https://www.codacy.com/manual/Vincent-gv/snowtricks?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vincent-gv/snowtricks&amp;utm_campaign=Badge_Grade" target="_blank"><img src="https://app.codacy.com/project/badge/Grade/64f0a78f60c247bbab2fb142aad72cfd"/></a></p>
+                        <p><a href="https://codeclimate.com/github/Vincent-gv/snowtricks/maintainability"
+                              target="_blank"><img
+                                        src="https://api.codeclimate.com/v1/badges/d5b1dbf3c70c506e9c8e/maintainability"/></a>
+                        </p>
+                        <p>
+                            <a href="https://www.codacy.com/manual/Vincent-gv/snowtricks?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vincent-gv/snowtricks&amp;utm_campaign=Badge_Grade"
+                               target="_blank"><img
+                                        src="https://app.codacy.com/project/badge/Grade/64f0a78f60c247bbab2fb142aad72cfd"/></a>
+                        </p>
                     </div>
                 </div>
             </div>

@@ -44,7 +44,15 @@
             </div>
         </div>
     </section>
-    <!-- Page Top section End -->
+    <!-- Page Top section End -->{% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="row sticky-message">
+                <div class="alert alert-{{ label }} text-center container-fluid mx-3" role="alert">
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
     <!-- Carousel section Start -->
     <section class="slider">
         <div id="thumbnail-slider" class="mt-5">
@@ -52,23 +60,29 @@
                 <ul>
                     {% if trick.videos %}
                         {% for video in trick.videos %}
-                            {% if video.VideoId|length < 9 %}
+                            {% if video.PlatformName == 'youtube' %}
                                 <li>
-                                    <a href="http://www.dailymotion.com/video/{{ video.videoId }}"
+                                    <a href="https://www.youtube.com/watch?v={{ video.PlatformId }}"
                                        class="zoombox carousel-items"></a>
                                     <iframe width="320" height="220"
-                                            src="https://www.dailymotion.com/embed/video/{{ video.videoId }}"
-                                            allowfullscreen=""></iframe>
-                                </li>
-                            {% else %}
-                                <li>
-                                    <a href="https://www.youtube.com/watch?v={{ video.videoId }}"
-                                       class="zoombox carousel-items"></a>
-                                    <iframe width="320" height="220"
-                                            src="https://www.youtube.com/embed/{{ video.videoId }}" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                                            src="https://www.youtube.com/embed/{{ video.PlatformId }}" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
                                             allowfullscreen></iframe>
                                 </li>
-                            {% endif %}
+                            {% elseif video.PlatformName == 'dailymotion' %}
+                            <li>
+                                    <a href="https://www.dailymotion.com/video/{{ video.PlatformId }}"
+                                       class="zoombox carousel-items"></a>
+                                    <iframe width="320" height="220"
+                                            src="https://www.dailymotion.com/embed/video/{{ video.PlatformId }}"
+                                            allowfullscreen></iframe>
+                            </li>
+                            {% elseif video.PlatformName == 'vimeo' %}
+                            <li>
+                                    <a href="https://player.vimeo.com/video/{{ video.PlatformId }}"
+                                       class="zoombox carousel-items"></a>
+                                    <iframe src="https://player.vimeo.com/video/{{ video.PlatformId }}" width="320" height="220" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="background-color: #1a1a1a;"></iframe>
+                                    </li>
+                                {% endif %}
                         {% endfor %}
                     {% endif %}
                     {% if trick.images %}
@@ -94,7 +108,7 @@
                         <div class="mx-4 text-justify">
                             <p>{{ trick.content | nl2br }}</p>
                         </div>
-                        <div id="anchor" class="border-top border-bottom py-4 text-center m-5">
+                        <div id="anchor" class="border-top border-bottom py-4 text-center m-5 lh-40">
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item"><i class="far fa-calendar-plus"></i> Posted
                                     {{ trick.createdAt ? trick.createdAt|date('jS F Y') : '' }} at {{ trick.createdAt ? trick.createdAt|date('g:i a') : '' }}</li>
@@ -122,10 +136,10 @@
                         </div>
                         <div class="mt-2 mb-5 pb-4 border-top">
                             <h4 class="font-secondary text-uppercase font-weight-normal mt-4 mb-4">{{ trick.comments | length }} Comments</h4>
-                            {% if comments %}
-                                {% for comment in comments %}
+                            {% if trick.comments %}
+                                {% for comment in trick.comments %}
                                     <div class="media mt-3 mb-5">
-                                        <img src="images/avatars/{{ comment.user.image }}" class="mr-4 img-fluid avatar"
+                                        <img src="images/avatars/{{ comment.user.image.filename }}" class="mr-4 img-fluid avatar"
                                              alt="{{ comment.user.username }}">
                                         <div class="media-body">
                                             <h4 class="mt-0 mb-0 text-capitalize">{{ comment.user.username }}</h4>

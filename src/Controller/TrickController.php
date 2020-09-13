@@ -8,6 +8,7 @@ use App\Form\CommentType;
 use App\Form\TrickType;
 use App\Repository\CommentRepository;
 use App\Repository\TrickRepository;
+use App\Service\VideoPlatformService;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,11 +49,12 @@ class TrickController extends AbstractController
 
     /**
      * @Route("publish/new-trick", name="trick_new", methods={"GET","POST"})
-     * @param TrickRepository $trickRepository
      * @param Request $request
+     * @param TrickRepository $trickRepository
+     * @param VideoPlatformService $videoPlatformService
      * @return Response
      */
-    public function new(Request $request, TrickRepository $trickRepository): Response
+    public function new(Request $request, TrickRepository $trickRepository, VideoPlatformService $videoPlatformService): Response
     {
 
         $user = $this->getUser();
@@ -111,7 +113,7 @@ class TrickController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
-            $this->addFlash('success', 'Comment was successfully published !');
+            $this->addFlash('success', 'Your comment was successfully published !');
 
             return $this->redirectToRoute('trick_show', [
                 'slug' => $trick->getSlug()

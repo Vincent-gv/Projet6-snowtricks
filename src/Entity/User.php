@@ -45,12 +45,12 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="User")
+     * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="user")
      */
     private $tricks;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="User")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
      */
     private $comments;
 
@@ -228,5 +228,4 @@ class User implements UserInterface
 
         return $this;
     }
-
 }

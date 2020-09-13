@@ -157,9 +157,7 @@ input[id*="trick_images_generated"] {
 }
 
 .add-more {
-    margin-top: -20px;
     display: block;
-    position: relative;
 }
 
 #trick_videos .add-more {
@@ -171,9 +169,11 @@ input[id*="trick_images_generated"] {
 }
 
 #trick_images .preview {
-    max-width: 242px;
-    position: relative;
-    top: -70px;
+    width: 202px;
+}
+
+.custom-file {
+    height: unset;
 }
 
 .btn {
@@ -573,6 +573,10 @@ a:hover, a:focus {
     line-height: 95px;
 }
 
+.heading h1 a {
+    color: #fff;
+}
+
 .heading span.subhead {
     color: #fff;
     letter-spacing: 5px;
@@ -643,16 +647,6 @@ a:hover, a:focus {
 
 .badge-dark a {
     color: #fff;
-}
-
-.badge-dark:hover, .badge-dark a:hover {
-    background-color: #2ccdff;
-    color: #fff !important;
-}
-
-.category:hover, .category a:hover {
-    background-color: #343a40;
-    color: #fff !important;
 }
 
 .btn-edit {
@@ -791,10 +785,6 @@ a:hover, a:focus {
     color: rgba(255, 255, 255, 0.8) !important;
 }
 
-.mt--45 {
-    margin-top: -45px;
-}
-
 .overlay-content {
     width: 100%;
     position: absolute;
@@ -818,8 +808,8 @@ a:hover, a:focus {
     width: 40%;
 }
 
-.lh-35 {
-    line-height: 35px;
+.mt--45 {
+    margin-top: -45px;
 }
 
 .mt--170 {
@@ -828,6 +818,14 @@ a:hover, a:focus {
 
 .lh-25 {
     line-height: 23px;
+}
+
+.lh-35 {
+    line-height: 35px;
+}
+
+.lh-40 {
+    line-height: 40px;
 }
 
 .pagination {
@@ -1041,7 +1039,7 @@ a:hover, a:focus {
     background: #111;
 }
 
-.footer-menu li a {
+.footer-menu li, .footer-menu li a {
     color: #fff;
     opacity: .8;
     font-size: 14px;
