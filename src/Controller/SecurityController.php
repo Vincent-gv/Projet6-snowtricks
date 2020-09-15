@@ -64,7 +64,7 @@ class SecurityController extends AbstractController
     {
         if ($request->isMethod('post')) {
 
-            $user = $userRepository->findOneBy(['email' => $request->get('email')]);
+            $user = $userRepository->findOneBy(['email' => $request->request->get('email')]);
 
             if ($user === null) {
                 $this->addFlash('danger', 'Incorrect email');

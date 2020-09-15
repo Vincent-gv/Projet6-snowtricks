@@ -21,6 +21,16 @@
     </{{ element|default('div') }}>
 {% endblock %}
 
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+    {%- if type == 'range' or type == 'color' -%}
+        {# Attribute "required" is not supported #}
+        {%- set required = false -%}
+    {%- endif -%}
+
+
+{%- endblock form_widget_simple -%}
+
 {% block title %} {{ parent() }} - Edit{% endblock %}
 
 {% block content %}

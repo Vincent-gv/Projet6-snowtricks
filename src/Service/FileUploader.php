@@ -4,11 +4,9 @@ namespace App\Service;
 
 use App\Entity\IUploadable;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
 class FileUploader
 {
-    private $slugger;
     private $publicPath;
 
     public function __construct(string $publicPath)
