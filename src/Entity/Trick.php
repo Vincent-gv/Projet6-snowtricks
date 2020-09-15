@@ -38,7 +38,6 @@ class Trick
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Assert\Length(min = 2, max = 255)
      */
     private $content;
 
@@ -74,7 +73,7 @@ class Trick
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="trick")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="tricks")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;

@@ -27,11 +27,11 @@ class Category
     /**
      * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="category")
      */
-    private $Trick;
+    private $tricks;
 
     public function __construct()
     {
-        $this->Trick = new ArrayCollection();
+        $this->tricks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -54,15 +54,15 @@ class Category
     /**
      * @return Collection|Trick[]
      */
-    public function getTrick(): Collection
+    public function getTricks(): Collection
     {
-        return $this->Trick;
+        return $this->tricks;
     }
 
     public function addTrick(Trick $trick): self
     {
-        if (!$this->Trick->contains($trick)) {
-            $this->Trick[] = $trick;
+        if (!$this->tricks->contains($trick)) {
+            $this->tricks[] = $trick;
             $trick->setCategory($this);
         }
 
@@ -71,8 +71,8 @@ class Category
 
     public function removeTrick(Trick $trick): self
     {
-        if ($this->Trick->contains($trick)) {
-            $this->Trick->removeElement($trick);
+        if ($this->tricks->contains($trick)) {
+            $this->tricks->removeElement($trick);
             // set the owning side to null (unless already changed)
             if ($trick->getCategory() === $this) {
                 $trick->setCategory(null);

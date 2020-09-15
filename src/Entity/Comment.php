@@ -37,7 +37,7 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
      */
-    private $User;
+    private $user;
 
     public function getId(): ?int
     {
