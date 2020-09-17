@@ -111,15 +111,9 @@ class SecurityController extends AbstractController
 
                 return $this->render('security/security-recover-password.html.twig');
             }
-            $session->set('forgotPasswordUserId', $user->getId());
         }
-
-        if ($this->getUser()) {
-            $user = $this->getUser();
-        } elseif ($session->get('forgotPasswordUserId')) {
-            $user = $userRepository->find($session->get('forgotPasswordUserId'));
-        } else {
-            return $this->redirectToRoute('recover-password');
+        else {
+            return $this->render('security/security-recover-password.html.twig');
         }
 
         $form = $this->createForm(ResetPasswordType::class, $user);
@@ -128,7 +122,7 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
             $user->setToken(null);
-            $user->setTokenCreatedAt( null);
+            $user->setTokenCreatedAt(null);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -138,7 +132,7 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('sign-in');
             }
         }
-        return $this->render('security/security-reset-password.html.twig',[
+        return $this->render('security/security-reset-password.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -168,6 +162,6 @@ class SecurityController extends AbstractController
 
     public function generateToken()
     {
-        return rtrim(strtr(base64_encode(random_bytes(32)), '+/','-_'), '=');
+        return rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '=');
     }
 }
