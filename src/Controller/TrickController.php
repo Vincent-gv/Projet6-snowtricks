@@ -109,7 +109,6 @@ class TrickController extends AbstractController
             $comment->setCreatedAt(new DateTime());
             $comment->setUser($user)
                 ->setTrick($trick);
-            dump($comment);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
