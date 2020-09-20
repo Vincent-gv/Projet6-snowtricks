@@ -85,14 +85,14 @@ class Comment
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUser(): ?user
     {
-        return $this->User;
+        return $this->user;
     }
 
-    public function setUser(?User $User): self
+    public function setUser(?user $user): self
     {
-        $this->User = $User;
+        $this->user = $user;
 
         return $this;
     }

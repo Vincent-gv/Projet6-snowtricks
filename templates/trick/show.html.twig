@@ -44,9 +44,10 @@
             </div>
         </div>
     </section>
-    <!-- Page Top section End -->{% for label, messages in app.flashes %}
+    <!-- Page Top section End -->
+    {% for label, messages in app.flashes %}
         {% for message in messages %}
-            <div class="row sticky-message">
+            <div class="row">
                 <div class="alert alert-{{ label }} text-center container-fluid mx-3" role="alert">
                     {{ message }}
                 </div>
