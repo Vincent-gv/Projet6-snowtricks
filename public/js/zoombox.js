@@ -633,3 +633,5 @@ function scrollX(){
 }
 
 })(jQuery);
+
+$('a.zoombox').zoombox();
