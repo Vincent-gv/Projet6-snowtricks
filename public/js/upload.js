@@ -1,28 +1,40 @@
+$(document).ready(function () {
 
-const $collectionElements = document.querySelectorAll('.collection_element');
+    const $fileInput = $('.input-upload');
+
+    $fileInput.on('change', (e) => {
+        e.preventDefault();
+        $('.custom-file-label').text($fileInput.val());
+    })
+
+    const $collectionElements = document.querySelectorAll('.collection_element');
+
+    $('legend').remove();
+    $('.alt-text').remove();
+    $('.input-video').remove();
 
 for (let $collectionElement of $collectionElements) {
     const $deleteButton = document.createElement('button');
     $deleteButton.innerHTML = '<i class="fas fa-trash"></i> Delete';
     $deleteButton.setAttribute('type', 'button');
-    $deleteButton.className = 'btn-round mt-2 text-sm float-right delete';
+    $deleteButton.className = 'btn-round mt-2 text-sm delete';
     $deleteButton.addEventListener('click', function () {
         this.parentElement.remove();
     });
 
-    $collectionElement.parentElement.appendChild($deleteButton);
+    $collectionElement.parentElement.prepend($deleteButton);
 }
 
 function addInput($inputsDiv, prototype, label, index) {
     const finalPrototype = prototype
-        .replace(/__name__label__/gm, 'New ' + index)
+        .replace(/__name__label__/gm, 'New ' + index + ' *')
         .replace(/__name__/gm, 'generated_' + index);
     const $input = document.createRange().createContextualFragment(finalPrototype);
 
     const $deleteButton = document.createElement('button');
     $deleteButton.innerHTML = '<i class="fas fa-trash"></i> Delete';
     $deleteButton.setAttribute('type', 'button');
-    $deleteButton.className = 'btn-round mt-2 text-sm float-right delete';
+    $deleteButton.className = 'btn-round mt-2 text-sm delete';
     $deleteButton.addEventListener('click', function () {
         this.parentElement.remove();
     });
@@ -30,8 +42,8 @@ function addInput($inputsDiv, prototype, label, index) {
     $input.querySelector('.form-group').appendChild($deleteButton);
 
     $inputsDiv.appendChild($input);
-}
 
+}
 
 $collectionDivs = document.querySelectorAll('*[data-prototype]');
 
@@ -55,3 +67,4 @@ for (const $collectionDiv of $collectionDivs) {
 
     addInput($inputsDiv, prototype, label, ++index);
 }
+});
