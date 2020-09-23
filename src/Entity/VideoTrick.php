@@ -17,6 +17,9 @@ class VideoTrick
      */
     private $id;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $url;
 
     /**
@@ -90,5 +93,32 @@ class VideoTrick
         $this->platformName = $platformName;
 
         return $this;
+    }
+
+    public function getIframe(): ?string
+    {
+        if ($this->getPlatformName() === 'youtube') {
+            return '<a href="https://www.youtube.com/watch?v='
+                . $this->getPlatformId()
+                . '" class="zoombox carousel-items"></a><iframe width="320" height="220" src="https://www.youtube.com/embed/'
+                . $this->getPlatformId()
+                . '"></iframe>';
+        }
+
+        if ($this->getPlatformName() === 'dailymotion') {
+            return '<a href="https://www.dailymotion.com/video/'
+                . $this->getPlatformId()
+                . '" class="zoombox carousel-items"></a><iframe style="background-color: #1a1a1a;" width="320" height="220" frameborder="0" src="https://www.dailymotion.com/embed/video/'
+                . $this->getPlatformId()
+                . '"></iframe>';
+        }
+
+        if ($this->getPlatformName() === 'vimeo') {
+            return '<a href="https://player.vimeo.com/video/'
+                . $this->getPlatformId()
+                . '" class="zoombox carousel-items"></a><iframe width="320" height="220" src="https://player.vimeo.com/video/'
+                . $this->getPlatformId()
+                . '" style="background-color: #1a1a1a;"></iframe>';
+        }
     }
 }

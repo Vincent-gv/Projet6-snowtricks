@@ -35,42 +35,6 @@
     <div id="add-video" class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <h4 class="font-weight-light mt-3"><i class="fab fa-youtube"></i> Videos</h4>
-            {% if trick.videos %}
-                <div class="d-flex flex-wrap mt-3">
-                    {% for video in trick.videos %}
-                        {% if video.PlatformName == 'youtube' %}
-                            <div class="mb-3 mr-1">
-                                <iframe width="202" height="120"
-                                        src="https://www.youtube.com/embed/{{ video.PlatformId }}"
-                                        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-                                <br>
-                                <div class="text-center">
-                                    <span class="text-sm label-video-id"><strong>YouTube:</strong> {{ video.PlatformId }}</span>
-                                </div>
-                            </div>
-                        {% elseif video.PlatformName == 'dailymotion' %}
-                            <div class="mb-3 mr-1">
-                                <iframe width="202" height="120"
-                                        src="https://www.dailymotion.com/embed/video/{{ video.PlatformId }}"
-                                        allowfullscreen></iframe>
-                                <br>
-                                <div class="text-center">
-                                    <span class="text-sm label-video-id"><strong>DailyMotion:</strong> {{ video.PlatformId }}</span>
-                                </div>
-                            </div>
-                        {% elseif video.PlatformName == 'vimeo' %}
-                            <div class="mb-3 mr-1">
-                                <iframe src="https://player.vimeo.com/video/{{ video.PlatformId }}" width="202" height="120" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="background-color: #1a1a1a;"></iframe>
-                                <br>
-                                <div class="text-center">
-                                    <span class="text-sm label-video-id"><strong>Vimeo:</strong> {{ video.PlatformId }}</span>
-                                </div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endif %}
             {{ form_row(form.videos) }}
         </div>
     </div>

@@ -3,7 +3,6 @@
 
 namespace App\Service;
 
-
 use App\Entity\VideoTrick;
 
 class VideoPlatformService
@@ -43,5 +42,7 @@ class VideoPlatformService
 
             return;
         }
+
+        throw new \Exception('Bad URL format');
     }
 }

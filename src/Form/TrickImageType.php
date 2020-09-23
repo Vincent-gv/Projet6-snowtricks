@@ -17,14 +17,14 @@ class TrickImageType extends AbstractType
             ->add('file', FileType::class, [
                 'label' => false,
                 'attr' => [
+                    'placeholder' => 'Select a file',
                     'class' => ' input-upload',
                     'block_name' => 'custom_name']
             ])
             ->add('alt', TextType::class, [
                 'label' => 'Alt text:',
                 'attr' => [
-                    'placeholder' => 'Alternate text for image',
-                    'class' => 'form-control'
+                    'placeholder' => 'Alternate text for image'
                 ]]);
     }
 

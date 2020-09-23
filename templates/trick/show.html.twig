@@ -45,55 +45,22 @@
         </div>
     </section>
     <!-- Page Top section End -->
-    {% for label, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="row">
-                <div class="alert alert-{{ label }} text-center container-fluid mx-3" role="alert">
-                    {{ message }}
-                </div>
-            </div>
-        {% endfor %}
-    {% endfor %}
     <!-- Carousel section Start -->
     <section class="slider">
         <div id="thumbnail-slider" class="mt-5">
             <div class="inner">
                 <ul>
-                    {% if trick.videos %}
-                        {% for video in trick.videos %}
-                            {% if video.PlatformName == 'youtube' %}
-                                <li>
-                                    <a href="https://www.youtube.com/watch?v={{ video.PlatformId }}"
-                                       class="zoombox carousel-items"></a>
-                                    <iframe width="320" height="220"
-                                            src="https://www.youtube.com/embed/{{ video.PlatformId }}" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                </li>
-                            {% elseif video.PlatformName == 'dailymotion' %}
-                            <li>
-                                    <a href="https://www.dailymotion.com/video/{{ video.PlatformId }}"
-                                       class="zoombox carousel-items"></a>
-                                    <iframe width="320" height="220"
-                                            src="https://www.dailymotion.com/embed/video/{{ video.PlatformId }}"
-                                            allowfullscreen></iframe>
-                            </li>
-                            {% elseif video.PlatformName == 'vimeo' %}
-                            <li>
-                                    <a href="https://player.vimeo.com/video/{{ video.PlatformId }}"
-                                       class="zoombox carousel-items"></a>
-                                    <iframe src="https://player.vimeo.com/video/{{ video.PlatformId }}" width="320" height="220" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="background-color: #1a1a1a;"></iframe>
-                                    </li>
-                                {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                    {% if trick.images %}
-                        {% for image in trick.images %}
-                            <li>
-                                <a href="{{ asset('upload/images/' ~ image.filename) }}"
-                                   onclick="$.zoombox.options.theme = 'simple';"
-                                   class="zoombox thumb" title="{{ image.alt }}"></a>
-                            </li>
-                        {% endfor %}
+                {% for trickVideo in trick.videos %}
+                    <li>
+                        {{ trickVideo.iframe | raw }}
+                    </li>
+                {% endfor %}
+                {% if trick.images %}
+                {% for image in trick.images %}
+                    <li>
+                        <a href="{{ asset('upload/images/' ~ image.filename) }}" onclick="$.zoombox.options.theme = 'simple';" class="zoombox thumb" title="{{ image.alt }}"></a>
+                    </li>
+                    {% endfor %}
                     {% endif %}
                 </ul>
             </div>
