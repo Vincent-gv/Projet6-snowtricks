@@ -1,9 +1,17 @@
 {{ form_start(form) }}
 <form action="#" class="text-left">
     <div class="form-group text-center">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="row">
+                    <div class="alert alert-{{ label }} text-center container-fluid mx-3" role="alert">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
         {{ form_errors(form.comment) }}
         {{ form_row(form.comment, {'label':false, 'attr': {'class': 'form-control','placeholder': 'Your Comment','rows': '4'}}) }}
-
         {{ form_row(form._token) }}
         <div class="text-center mt-4">
             <button class="btn btn-main" type="submit">{{ button_label|default('Add Comment') }}</button>

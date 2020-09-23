@@ -10,6 +10,7 @@
     {% if app is defined and app.request is defined %}{%- set input_lang = app.request.locale -%}{%- endif -%}
     {% if form.parent.vars.data != null %}
         <img class="preview" src="{{ form.parent.vars.data.fullPath }}">
+        <p class="mb-0">{{ form.parent.vars.data.filename }}</p>
     {%- else -%}
     {{- block('form_widget_simple') -}}
         <label for="{{ form.vars.id }}" lang="{{ input_lang }}" {% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}>
@@ -21,14 +22,15 @@
     </{{ element|default('div') }}>
 {% endblock %}
 
-{%- block form_widget_simple -%}
-    {%- set type = type|default('text') -%}
-    {%- if type == 'range' or type == 'color' -%}
-        {# Attribute "required" is not supported #}
-        {%- set required = false -%}
-    {%- endif -%}
-    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-{%- endblock form_widget_simple -%}
+{% block url_video_widget %}
+    {% if form.parent.vars.value %}
+        {{ form.parent.vars.value.iframe | raw }}
+        <br>
+            <span class="text-sm label-video-id"><strong>{{ form.parent.vars.value.platformname }}:</strong> {{ form.parent.vars.value.platformid }}</span>
+    {% endif %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}
+           class="form-control">
+{% endblock %}
 
 {% block title %} {{ parent() }} - Edit{% endblock %}
 
@@ -78,7 +80,9 @@
 
     <!-- Publish section End -->
 {% endblock %}
-{% block javascripts %}
-    <script src="{{ asset('js/upload.js') }}"></script>
-    <script src="{{ asset('js/slug.js') }}"></script>
-{% endblock %}
+
+    {% block javascripts %}
+        <script src="{{ asset('js/zoombox.js') }}"></script>
+        <script src="{{ asset('js/upload.js') }}"></script>
+        <script src="{{ asset('js/slug.js') }}"></script>
+    {% endblock %}

@@ -1,0 +1,7 @@
+{% block url_video_widget %}
+    {% if form.parent.vars.value %}
+        {{ form.parent.vars.value.iframe | raw }}
+    {% endif %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}
+           class="form-control d-none">
+{% endblock %}
