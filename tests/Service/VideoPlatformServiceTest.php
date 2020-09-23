@@ -54,9 +54,7 @@ class VideoPlatformServiceTest extends TestCase
 
         $videoTrick->setUrl('https://www.google.com');
 
+        $this->expectExceptionMessage('Bad URL format');
         $videoPlatformService->parse($videoTrick);
-
-        $this->assertEquals('youtube', $videoTrick->getPlatformName());
-        $this->assertEquals('qybcQBiP7t0', $videoTrick->getPlatformId());
     }
 }
