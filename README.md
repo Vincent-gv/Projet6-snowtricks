@@ -16,12 +16,21 @@ Expand a PHP SnowTricks community site with Symfony 4.
 ### Installation
 
 * Clone the project on Github https://github.com/Vincent-gv/snowtricks and add it to the projects folder of your local server environment with the command:
-`` ''
+`` 
 git clone https://github.com/Vincent-gv/snowtricks.git
-`` ''
-* Run `` composer install '' at the root of the folder to install the dependencies.
+`` 
+* Run 
+`` composer install 
+``  at the root of the folder to install the dependencies.
 * Create a local database and update environment variables in .env file.
-* Run Doctrine to load SQL tables and fixtures into the database.
+* Run Doctrine to load SQL tables: 
+`` 
+php bin/console doctrine:database:create
+`` 
+ * Load fixtures into the database: 
+`` 
+ php bin/console doctrine:fixtures:load
+`` 
 
 ## Developed with
 
@@ -36,7 +45,7 @@ git clone https://github.com/Vincent-gv/snowtricks.git
 ** Vincent Gauchevertu ** - Openclassrooms student
 https://github.com/Vincent-gv/
 
-Online demo: http://snowtricks.vincent-dev.com/
+Online demo: https://snowtricks.vincent-dev.com/
 
 ## Project badges
 
