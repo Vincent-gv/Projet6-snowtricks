@@ -39,3 +39,6 @@ services:
         -   name: 'doctrine.orm.entity_listener'
             event: 'prePersist'
             entity: 'App\Entity\VideoTrick'
+        -   name: 'doctrine.orm.entity_listener'
+            event: 'preUpdate'
+            entity: 'App\Entity\VideoTrick'
