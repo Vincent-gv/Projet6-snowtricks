@@ -33,7 +33,7 @@
                     <li><a href="/" class="text-white">Home</a></li>
                     <li><a href="{{ path('trick_new') }}" class="text-white">Publish</a></li>
                     {% if not app.user %}
-                        <li><a href="{{ path('contact') }}" class="text-white">Sign up</a></li>
+                        <li><a href="{{ path('sign-up') }}" class="text-white">Sign up</a></li>
                     {% endif %}
                     {% if app.user %}
                         <li><a href="{{ path('app_logout') }}" class="text-color">Log out</a></li>
@@ -48,7 +48,7 @@
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ path('trick_new') }}">Publish</a></li>
                 {% if not app.user %}
-                    <li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">Sign up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('sign-up') }}">Sign up</a></li>
                 {% endif %}
             </ul>
             <div class="my-md-0 ml-lg-4 mt-4 mt-lg-0 ml-auto text-lg-right mb-3 mb-lg-0">
