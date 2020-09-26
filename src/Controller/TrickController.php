@@ -56,7 +56,6 @@ class TrickController extends AbstractController
      */
     public function new(Request $request, TrickRepository $trickRepository, VideoPlatformService $videoPlatformService): Response
     {
-
         $user = $this->getUser();
         $trick = new Trick();
         $form = $this->createForm(TrickType::class, $trick);
@@ -68,7 +67,7 @@ class TrickController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($trick);
             $entityManager->flush();
-            $this->addFlash('success', 'Trick was successfully created !');
+            $this->addFlash('success', 'Trick ' . $trick->getTitle() . ' was successfully created !');
 
             return $this->redirectToRoute('home');
         }
@@ -112,7 +111,7 @@ class TrickController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
-            $this->addFlash('success', 'Your comment was successfully published !');
+            $this->addFlash('success', 'Thank you ' . $user->getUsername() . ', your comment was successfully published!');
 
             return $this->redirect($request->getUri());
         }
