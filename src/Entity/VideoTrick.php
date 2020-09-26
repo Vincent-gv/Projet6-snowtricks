@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\VideoTrickRepository;
+use App\Validator\Constraints\VideoUrl;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,6 +20,7 @@ class VideoTrick
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @VideoUrl()
      */
     private $url;
 
