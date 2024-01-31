@@ -4,7 +4,7 @@
 
 Expand a PHP SnowTricks community site with Symfony 4.
 
-![screenshot](http://vincent-dev.com/img/screenshot2.jpg)
+![screenshot](https://vincentg.fr/images/snowtricks2.jpg)
 
 ## Application installation
 
